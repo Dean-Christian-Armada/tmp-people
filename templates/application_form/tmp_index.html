@@ -13,7 +13,7 @@
       <div class="bs-doc-header">
         <div class="container">
           <h1>Step 1 : APPLICATION FORM</h1>
-          <h4>Explore your opportunities here!</h4>
+          <h4>Join the Manship Team!</h4>
           <div class="image-holder pull-right"><img src="{% static 'img/mascot.png' %}" ></div>
         </div>
       </div>
@@ -27,7 +27,7 @@
             <form method="POST" id="myform" class="form-horizontal" autocomplete="off" action="{% url 'application_form' %}">
               {% csrf_token%}
               {% include "application_form/error_validations.html" %}
-              <!-- <div class="form-group">
+              <div class="form-group">
                 <div class="col-md-6">
                   <div class="form-group">
                     <div class="col-md-6 padding-negator">
@@ -71,10 +71,10 @@
               </div>
               <h3 id='step-2' style="color: #02be9b;">How did you learn about Manship?</h3>
               {{ appsource_form.source.errors }}
-              {{ appsource_form.source }} -->
+              {{ appsource_form.source }}
               
 
-              <!-- <h3 id='step-3' style="color: #02be9b;">Personal Data</h3>
+              <h3 id='step-3' style="color: #02be9b;">Personal Data</h3>
               <div class="form-group">
                 <div class="col-md-4">
                   
@@ -269,8 +269,8 @@
               <div class="form-group">
                 <div class="col-md-6">
                   
-                  {{ spouse_form.name|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Spouse's Maiden Name" }}
-                  {{ spouse_form.name.errors }}
+                  {{ spouse_form.spouse_name|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Spouse's Maiden Name" }}
+                  {{ spouse_form.spouse_name.errors }}
                 </div>
                 <div class="col-md-3">
                   
@@ -279,8 +279,8 @@
                 </div>
                 <div class="col-md-3">
                   
-                  {{ spouse_form.contact|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Spouse's Contact No." }}
-                  {{ spouse_form.contact.errors }}
+                  {{ spouse_form.spouse_contact|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Spouse's Contact No." }}
+                  {{ spouse_form.spouse_contact.errors }}
                 </div>
               </div>
               <div class="form-group">
@@ -320,7 +320,8 @@
                   {{ college_form.coll_to.errors }}
                 </div>
               </div>
-
+              
+              
               <div class="form-group">
                 <div class="col-md-8">
                   
@@ -337,19 +338,19 @@
                   {{ highschool_form.hs_to|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:To" }}
                   {{ highschool_form.hs_to.errors }}
                 </div>
-              </div> -->
+              </div>
 
-              <!-- <h3 id='step-5' style="color: #02be9b;">Emergency Contact Details</h3>
+              <h3 id='step-5' style="color: #02be9b;">Emergency Contact Details</h3>
               <div class="form-group">
                 <div class="col-md-6">
 
-                  {{ emergencycontact_form.name|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Person to Contact in Case of Emergency" }}
-                  {{ emergencycontact_form.name.errors }}
+                  {{ emergencycontact_form.emergency_name|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Person to Contact in Case of Emergency" }}
+                  {{ emergencycontact_form.emergency_name.errors }}
                 </div>
                 <div class="col-md-3">
 
-                  {{ emergencycontact_form.contact|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Contact No." }}
-                  {{ emergencycontact_form.contact.errors }}
+                  {{ emergencycontact_form.emergency_contact|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Contact No." }}
+                  {{ emergencycontact_form.emergency_contact.errors }}
                 </div>
                 <div class="col-md-3">
 
@@ -367,29 +368,30 @@
               <div class="form-group">
                 <div class="col-md-3">
 
-                  {{ emergencycontact_form.street|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Street" }}
-                  {{ emergencycontact_form.street.errors }}
+                  {{ emergencycontact_form.emergency_street|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Street" }}
+                  {{ emergencycontact_form.emergency_street.errors }}
                 </div>
                 <div class="col-md-3">
 
-                  {{ emergencycontact_form.baranggay|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Baranggay"|attr:"id:emergency_baranggay" }}
-                  {{ emergencycontact_form.baranggay.errors }}
+                  {{ emergencycontact_form.emergency_baranggay|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Baranggay"|attr:"id:emergency_baranggay" }}
+                  {{ emergencycontact_form.emergency_baranggay.errors }}
                 </div>
                 <div class="col-md-2">
-                  {{ emergencycontact_form.town|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Town" }}
-                  {{ emergencycontact_form.town.errors }}
+                  {{ emergencycontact_form.emergency_town|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Town" }}
+                  {{ emergencycontact_form.emergency_town.errors }}
                 </div>
                 <div class="col-md-2">
-                  {{ emergencycontact_form.municipality|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Municipality"|attr:"id:emergency_municipality" }}
-                  {{ emergencycontact_form.municipality.errors }}
+                  {{ emergencycontact_form.emergency_municipality|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Municipality"|attr:"id:emergency_municipality" }}
+                  {{ emergencycontact_form.emergency_municipality.errors }}
                 </div>
                 <div class="col-md-2">
 
-                  {{ emergencycontact_form.zip|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Zip Code" }}
-                  {{ emergencycontact_form.zip.errors }}
+                  {{ emergencycontact_form.emergency_zip|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Zip Code" }}
+                  {{ emergencycontact_form.emergency_zip.errors }}
                 </div>
               </div>
-
+             
+              <h3 id='step-6'><a href = "#seaservice" role="button" data-toggle="modal" rel="tooltip" data-original-title="Click here to add more sea services" class="btn btn-info btn-lg sea-service-button form-control">Sea Service</a></h3>
 
               <h3 id='step-7' style="color: #02be9b;">Background Information</h3>
                 
@@ -410,7 +412,7 @@
                   {{ backgroundinfo_form.disciplinary_action.errors }}
                   C.) Have you ever been subject of any disciplinary action during an employment contract?
                   {{ backgroundinfo_form.disciplinary_action }}
-                </p> -->
+                </p>
 
                 
               <h3 id='step-8' style="color: #02be9b;">National Certificates and Travel Documents</h3>
@@ -494,8 +496,7 @@
               <div class="form-group">
                 <div class="col-md-6">
                   US Visa(C1/D)
-                  <!-- <input type="radio" data-toggle="tooltip" name="us_visa" value="yes"> Yes 
-                  <input type="radio" data-toggle="tooltip" name="us_visa" value="no"> No -->
+                 
                   {{ usvisa_form.usvisa_type }}
                   {{ usvisa_form.usvisa_type.errors }}
                 </div>
@@ -508,8 +509,7 @@
               <div class="form-group">
                 <div class="col-md-6">
                   Schengen Visa(Type C)
-                  <!-- <input type="radio" data-toggle="tooltip" name="schengen_visa" value="yes"> Yes 
-                  <input type="radio" data-toggle="tooltip" name="schengen_visa" value="no"> No -->
+
                   {{ schengenvisa_form.schengen_type }}
                   {{ schengenvisa_form.schengen_type.errors }}
                 </div>
@@ -531,23 +531,170 @@
                   {{ yellowfever_form.yellow_fever_expiry.errors }}
                 </div>
               </div>
+              <h3 id='step-9' style="color: #02be9b;">Flag Documents</h3>
+              <p>Please check the box if you possess any of the specified flag document</p>
+              <div class="form-group">
+                <div class="col-md-12">
+                  {# personaldata_form.flags.errors #}
+                </div>
+                {% for flags in personaldata_form.flags %}
+                  <div class="col-md-2 padding-right-negator">
+                    {{ flags }}
+                  </div>
+                {% endfor %}
+              </div>
+
+              <h3 id='step-10' style="color: #02be9b;">Training and Other Certificates</h3>
+              <p>Please check the box if you possess any of the specified flag document</p>
+              <div class="form-group">
+                <div class="col-md-12">
+                  {{ personaldata_form.training_certificates.errors }}
+                </div>
+                {% for certs in personaldata_form.training_certificates %}
+                  <div class="col-md-6">
+                    {{ certs }}
+                  </div>
+                {% endfor %}
+              </div>
+
+              <h3 id='step-11' style="color: #02be9b;">Essay</h3>
+              <p>Kindly say something about yourself, your qualifications and any other reasons why we should hire you.</p>
+              <p><b>(Take note: Essay must be at least 50 words)</b></p>
+              <p><b>TOTAL WORD COUNT: <span id="display_count">0</span> words</b></p>
+              {{ app_form.essay.errors }}
+              <p>
+                <!-- <textarea class="form-control essay" style="height:200px" name="essay" id="essay"></textarea> -->
+                {{ app_form.essay }}          
+              </p>
+              <div class="certification">
+                <h3 id='step-12' style="margin-top:0px; color: #02be9b;">Certification</h3>
+                <p>1.) I certify that all information I have provided on this Application Form is, to the best of my knowledge true and correct</p>
+                <p>2.) I agree that if I have withheld or misrepresented any information on this Application Form. I alone am responsible and accountable for any consequence of such withholding or misrepresentation</p>
+                <p>3.) I understand that the information I provided in this Application Form shall remain confidential, but I may be held liable for any untruthful statements made therein</p>
+                <div class="form-group">
+                  <div class="col-md-3">
+                    <label class="control-label">Printed Name:</label>
+                    <input type="text" data-toggle="tooltip" id="full_name" class="form-control certification-input" readonly="" placeholder="Printed Name" >
+                  </div>
+                  <div class="col-md-3">
+                    <label class="control-label">Signature:</label>
+                    <input type="text" data-toggle="modal" data-target="#signature" class="form-control certification-input" name="signature" placeholder="Signature" readonly="">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="control-label">Date:</label>
+                    <input type="text" data-toggle="tooltip" class="form-control certification-input application-date" readonly="" placeholder="Date" >
+                  </div>
+                </div>
+              </div>
+              <br />
 
 
 
 <div class="modal fade" id="webcam" tabindex="-1" role="dialog" aria-labelledby="PictureLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="seaserviceLabel"><b>TAKE PICTURE</b></h4>
-          </div>
-          <div class="modal-body webcam-container" style="text-align:center">
-          </div>
-          <div class="modal-footer">
-            <center><button type="button" class="btn btn-info half-width" id="start-application" onClick="take_snapshot()" data-dismiss="modal">Start Application</button></center>
-          </div>
-        </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="seaserviceLabel"><b>TAKE PICTURE</b></h4>
+      </div>
+      <div class="modal-body webcam-container" style="text-align:center">
+      </div>
+      <div class="modal-footer">
+        <center><button type="button" class="btn btn-info half-width" id="start-application" onClick="take_snapshot()" data-dismiss="modal">Start Application</button></center>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="modal fade" id="seaservice" tabindex="-1" role="dialog" aria-labelledby="SeaServiceLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h4 class="modal-title" id="seaserviceLabel"><b>SEA SERVICE ON LAST TWO RANKS</b><span class="refresh"></span></h4>
+      </div>
+      <div class="modal-body">
+        <div style="padding-left: 15px">
+          <h5><b>PLEASE READ INSTRUCTIONS CAREFULLY BEFORE FILLING OUT</b></h5>
+          <h5>1.) <i>Take note:</i> <b>If no available sea service simply click the button to proceed to the next section of Application Form</b></h5>
+          <h5>2.) <i>Please complete the fields per row from left to right</i><b> (Vessel Name, Vessel Type, Flag, GRT, DWT, Year Built, Engine Type, HP, KW, Manning Agency, Principal / Shipowner, Date Joined, Date Left, Month / Days, Rank, Cause of Discharge)</b></h5>
+          <h5>3.) <i>Take note:</i> <b>Scroll from left to right</b></h5>           
+          <h5>4.) <i>Take note:</i> <b>If a field is filled out you will be required to complete all the fields within the row</b></h5>
+          <h5>5.) <i>Take note:</i> <b>Click "Clear Row" to clear the required fields within the row</b></h5>
+          <h5>6.) <i>Take note:</i> <b>Click the "Proceed to Application" button to close</b></h5>
+          <h5 class="validations"></h5>
+        </div>
+        
+        <div class="table-responsive">
+          <table class="table table-striped sea-services">
+            <thead>
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Vessel Name</th>
+                <th>Vessel Type</th>
+                <th>Flag</th>
+                <th>GRT</th>
+                <th>DWT</th>
+                <th>Year Built</th>
+                <th>Engine Type</th>
+                <th>HP</th>
+                <th>KW</th>
+                <th>Manning Agency</th>
+                <th>Principal / Shipowner</th>
+                <th>Date Joined</th>
+                <th>Date Left</th>
+                <th>Rank</th>
+                <th>Cause of Discharge</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{ seaservice_form.management_form }}
+              {% for seaservice in seaservice_form %}
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>{{ seaservice.vessel_name|attr:"data-toggle:tooltip"|attr:"Placeholder:Vessel Name" }}</td>
+                  <td>{{ seaservice.vessel_type|attr:"data-toggle:tooltip"|attr:"Placeholder:Vessel Type"|add_class:"vtype" }}</td>
+                  <td>{{ seaservice.flag|attr:"data-toggle:tooltip"|attr:"Placeholder:Flag"|add_class:"flag" }}</td>
+                  <td>{{ seaservice.grt|attr:"data-toggle:tooltip"|attr:"Placeholder:GRT"|add_class:"grt" }}</td>
+                  <td>{{ seaservice.dwt|attr:"data-toggle:tooltip"|attr:"Placeholder:DWT"|add_class:"dwt" }}</td>
+                  <td>{{ seaservice.year_built|attr:"data-toggle:tooltip"|attr:"Placeholder:Year Built" }}</td>
+                  <td>{{ seaservice.engine_type|attr:"data-toggle:tooltip"|attr:"Placeholder:Engine Type" }}</td>
+                  <td>{{ seaservice.hp|attr:"data-toggle:tooltip"|attr:"Placeholder:HP"|add_class:"hp" }}</td>
+                  <td>{{ seaservice.kw|attr:"data-toggle:tooltip"|attr:"Placeholder:KW"|add_class:"kw" }}</td>
+                  <td>{{ seaservice.manning_agency|attr:"data-toggle:tooltip"|attr:"Placeholder:Manning Agency"|add_class:"manning_agency" }}</td>
+                  <td>{{ seaservice.principal|attr:"data-toggle:tooltip"|attr:"Placeholder:Principal / Shipowner" }}</td>
+                  <td>{{ seaservice.date_joined|add_class:"date date-joined"|attr:"data-toggle:tooltip"|attr:"Placeholder:Date Joined" }}</td>
+                  <td>{{ seaservice.date_left|add_class:"date date-left"|attr:"data-toggle:tooltip"|attr:"Placeholder:Date Left"|attr:"disabled" }}</td>
+                 {{ seaservice.duration|add_class:"duration"|attr:"data-toggle:tooltip"|attr:"Placeholder:Days"|attr:"readonly"|attr:"style:display:none" }}
+                   <td>{{ seaservice.rank|attr:"data-toggle:tooltip"|attr:"Placeholder:Rank"|add_class:"rank" }}</td>
+                   <td>{{ seaservice.cause_of_discharge|attr:"data-toggle:tooltip"|add_class:"first-choice" }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>  
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <center><button type="button" class="btn btn-info half-width" id="proceed-sea-service">Proceed to Application</button></center>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="signature" tabindex="-1" role="dialog" aria-labelledby="SignatureLabel" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Signature {{ app_form.signatures.errors }}</h4>
+      </div>
+      <div class="modal-body" style="text-align: center">
+        {{ app_form.signatures }}
+        <button type="button" class="btn btn-info form-control half-width" data-dismiss="modal" style="margin-top: 15px; margin-bottom: 15px;">Proceed to Application</button>
+      </div>
+    </div>
+  </div>
+</div>
               <button class="btn btn-success form-control submit-application" >Submit Application</button>
               <br /> &nbsp;
             </form>

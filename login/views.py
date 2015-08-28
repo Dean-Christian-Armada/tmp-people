@@ -70,7 +70,7 @@ def home(request):
 			return HttpResponse("HELLO This is the recruitment level!<a href='/logout/'>Log Out</a>")
 		elif userlevel == 'applicant':
 			# return HttpResponse("HELLO This is the applicant level!<a href='/logout/'>Log Out</a>")
-			return HttpResponseRedirect('/application-form/')
+			return HttpResponseRedirect('/application-form/tmp')
 		elif userlevel == 'crew':
 			return HttpResponse("HELLO This is the crew level!<a href='/logout/'>Log Out</a>")
 		else:

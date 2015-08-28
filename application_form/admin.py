@@ -7,26 +7,26 @@ from . models import *
 
 # Register your models here.
 
-class SeaServiceInline(admin.TabularInline):
-	model = SeaService
+# class SeaServiceInline(admin.TabularInline):
+# 	model = SeaService
 
-class FlagDocumentsInline(admin.TabularInline):
-	model = FlagDocuments
+# class FlagDocumentsInline(admin.TabularInline):
+# 	model = FlagDocuments
 
-class TrainingCertificatesInline(admin.TabularInline):
-	model = TrainingCertificates
+# class TrainingCertificatesInline(admin.TabularInline):
+# 	model = TrainingCertificates
 
-class AppFormAdmin(admin.ModelAdmin):
-	inlines = [
-		SeaServiceInline
-	]
+# class AppFormAdmin(admin.ModelAdmin):
+# 	inlines = [
+# 		SeaServiceInline
+# 	]
 
-class TrainingCertificatesResource(resources.ModelResource):
-	class Meta:
-		model = TrainingCertificates
+# class TrainingCertificatesResource(resources.ModelResource):
+# 	class Meta:
+# 		model = TrainingCertificates
 
-class TrainingCertificatesImport(ImportExportModelAdmin):
-	resource_class = TrainingCertificatesResource
+# class TrainingCertificatesImport(ImportExportModelAdmin):
+# 	resource_class = TrainingCertificatesResource
 
 admin.site.register(AppDetails)
 admin.site.register(AppSource)
@@ -47,11 +47,10 @@ admin.site.register(SchengenVisa)
 admin.site.register(YellowFever)
 admin.site.register(CertificatesDocuments)
 admin.site.register(FlagDocuments)
-admin.site.register(TrainingCertificates, TrainingCertificatesImport)
+admin.site.register(TrainingCertificates)
 admin.site.register(PersonalData)
-admin.site.register(AppForm, AppFormAdmin)
+admin.site.register(AppForm)
 admin.site.register(Reference)
-admin.site.register(CurrentAddress)
-admin.site.register(PermanentAddress)
+admin.site.register(Spouse)
 # admin.site.register(JSignatureModel)
 # admin.site.register(Sample)

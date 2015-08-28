@@ -54,10 +54,12 @@ class AppSourceForm(forms.ModelForm):
 
 class PersonalDataForm(forms.ModelForm):
 	age = forms.IntegerField(error_messages={'required': 'Please Fill up your Date of Birth'})
+	flags = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(renderer=HorizontalCheckboxRenderer), queryset=FlagDocuments.objects.filter(~Q(flags='None')))
+	training_certificates = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(renderer=HorizontalCheckboxRenderer), queryset=TrainingCertificates.objects.all(), error_messages={'required': 'Please do not forget to select among the trainings and certificates'})
 	class Meta:
 		model = PersonalData
 		fields = '__all__'
-		exclude = ('permanent_address', 'spouse', 'current_address')
+		exclude = ('permanent_address', 'spouse', 'current_address', 'training_certificates')
 
 class PermanentAddressForm(forms.ModelForm):
 	class Meta:
@@ -90,23 +92,39 @@ class EmergencyContactForm(forms.ModelForm):
 		fields = '__all__'
 
 class BackgroundInformationForm(forms.ModelForm):
+	CHOICES = (
+			('1', 'Yes'),
+			('0', 'No'),
+		)
+	visa_application = forms.NullBooleanField(widget=forms.RadioSelect(choices=CHOICES, renderer=HorizontalRadioRenderer))
+	detained = forms.NullBooleanField(widget=forms.RadioSelect(choices=CHOICES, renderer=HorizontalRadioRenderer))
+	disciplinary_action = forms.NullBooleanField(widget=forms.RadioSelect(choices=CHOICES, renderer=HorizontalRadioRenderer))
 	
 	class Meta:
 		model = BackgroundInformation
 		fields = '__all__'
 
-	def __init__(self, *args, **kwargs):
-		CHOICES = (
-			('1	', 'Yes'),
-			('0', 'No'),
-		)
-		super(BackgroundInformationForm, self).__init__(*args, **kwargs)
+	def clean(self):
+		msg = "Please choose either yes or no"
+		try:
+			visa_application = selfdata['visa_application']
+		except:
+			visa_application = self.cleaned_data['visa_application']
+		if visa_application is None:	
+			self.add_error('visa_application', msg)
+		try:
+			detained = selfdata['detained']
+		except:
+			detained = self.cleaned_data['detained']
+		if detained is None:	
+			self.add_error('detained', msg)
+		try:
+			disciplinary_action = selfdata['disciplinary_action']
+		except:
+			disciplinary_action = self.cleaned_data['disciplinary_action']
+		if disciplinary_action is None:	
+			self.add_error('disciplinary_action', msg)
 
-		FieldList = ['visa_application', 'detained', 'disciplinary_action']
-		for field in FieldList:
-			self.fields[field].widget = forms.RadioSelect(choices=CHOICES, renderer=HorizontalRadioRenderer)
-			# Sets the booleanfield as required
-			self.fields[field].required = True
 
 class PassportForm(forms.ModelForm):
 	class Meta:
@@ -139,36 +157,43 @@ class GOCForm(forms.ModelForm):
 		fields = ('goc', 'goc_expiry')
 		
 class USVisaForm(forms.ModelForm):
+	CHOICES = (
+			('1', 'Yes'),
+			('0', 'No'),
+		)
+	usvisa_type = forms.NullBooleanField(widget=forms.RadioSelect(choices=CHOICES, renderer=HorizontalRadioRenderer))
 	class Meta:
 		model = USVisa
 		fields = ('usvisa_type', 'usvisa_expiry')
 
-	def __init__(self, *args, **kwargs):
-		CHOICES = (
-			('1	', 'Yes'),
+	def clean(self):
+		try:
+			value = selfdata['usvisa_type']
+		except:
+			value = self.cleaned_data['usvisa_type']
+		if value is None:	
+			msg = "Please choose either yes or no"
+			self.add_error('usvisa_type', msg)
+
+
+class SchengenVisaForm(forms.ModelForm):
+	CHOICES = (
+			('1', 'Yes'),
 			('0', 'No'),
 		)
-		super(USVisaForm, self).__init__(*args, **kwargs)
-
-		self.fields['usvisa_type'].widget = forms.RadioSelect(choices=CHOICES, renderer=HorizontalRadioRenderer)
-		# Sets the booleanfield as required
-		self.fields['usvisa_type'].required = True
-		
-class SchengenVisaForm(forms.ModelForm):
+	schengen_type = forms.NullBooleanField(widget=forms.RadioSelect(choices=CHOICES, renderer=HorizontalRadioRenderer))
 	class Meta:
 		model = SchengenVisa
 		fields = ('schengen_type', 'schengen_expiry')
 
-	def __init__(self, *args, **kwargs):
-		CHOICES = (
-			('1	', 'Yes'),
-			('0', 'No'),
-		)
-		super(SchengenVisaForm, self).__init__(*args, **kwargs)
-
-		self.fields['schengen_type'].widget = forms.RadioSelect(choices=CHOICES, renderer=HorizontalRadioRenderer)
-		# Sets the booleanfield as required
-		self.fields['schengen_type'].required = True
+	def clean(self):
+		try:
+			value = selfdata['schengen_type']
+		except:
+			value = self.cleaned_data['schengen_type']
+		if value is None:
+			msg = "Please choose either yes or no"
+			self.add_error('schengen_type', msg)
 		
 class YellowFeverForm(forms.ModelForm):
 	class Meta:
@@ -187,18 +212,18 @@ class SeaServiceForm(forms.ModelForm):
             ('Change Management', 'Change Management'),
             ('Own Request', 'Own Request'),
 		)
-	cause_of_discharge = forms.ChoiceField(choices=SEASERVICE_CHOICES, error_messages={'invalid_choice': 'Please select a valid choice'})
+	cause_of_discharge = forms.ChoiceField(choices=SEASERVICE_CHOICES)
 	class Meta:
 		model = SeaService
 		fields = '__all__'
+		exclude = ('personal_data', )
 
 class AppForm(forms.ModelForm):
-	signature = JSignatureField(widget=JSignatureWidget(jsignature_attrs={'color': '#000'}), error_messages={'required': 'Please do not forget to sign before submitting'})
-	flags = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(renderer=HorizontalCheckboxRenderer), queryset=FlagDocuments.objects.filter(~Q(flags='None')), error_messages={'required': 'Please do not forget to select among the flags'})
-	training_certificates = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(renderer=HorizontalCheckboxRenderer), queryset=TrainingCertificates.objects.all(), error_messages={'required': 'Please do not forget to select among the trainings and certificates'})
+	signatures = JSignatureField(widget=JSignatureWidget(jsignature_attrs={'color': '#000'}), error_messages={'required': 'Please do not forget to sign before submitting'})	
+	essay = forms.CharField(widget=forms.Textarea(attrs={'class':"form-control essay", 'id':"essay"}))
 	class Meta:
 		model = AppForm
-		fields = ('essay', 'signature')
+		fields = ('essay', 'signatures')
 
 # class CertificatesDocumentsForm(forms.ModelForm):
 # 	class Meta:

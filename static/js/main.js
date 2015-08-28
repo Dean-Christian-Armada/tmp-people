@@ -378,7 +378,7 @@ $(function(){
 
     $(".essay").trigger('click');
     $("#id_civil_status").trigger("change");
-    $("input").trigger("keyup");
+    // $("input").trigger("keyup");
     $("body").on("change", "select", function(){
       val = $(this).val();
       $(this).css("color", "#000");
@@ -513,29 +513,29 @@ $(function(){
 }); 
 
 // Start Webcam Scripts
-// webcam.set_api_url( '/application-form/tmp-image/?first' );
-// webcam.set_quality( 90 ); // JPEG quality (1 - 100)
-// webcam.set_shutter_sound( true ); // play shutter click sound
-// $(".webcam-container").html(webcam.get_html(220, 180));
-// webcam.set_hook( 'onComplete', 'my_completion_handler' );
+webcam.set_api_url( '/application-form/tmp-image/?first' );
+webcam.set_quality( 90 ); // JPEG quality (1 - 100)
+webcam.set_shutter_sound( true ); // play shutter click sound
+$(".webcam-container").html(webcam.get_html(220, 180));
+webcam.set_hook( 'onComplete', 'my_completion_handler' );
   
-// function take_snapshot() {
-//   webcam.snap();
-// }
+function take_snapshot() {
+  webcam.snap();
+}
 
-// function my_completion_handler(msg) {
-//   d = new Date();
-//   if (msg != 'No data') {
-//     var image_url = msg;
-//     // show JPEG image in page
-//     // Extra parameter for Image Caching
-//     document.getElementById('picture-container').innerHTML = '<img src="' + image_url + '?'+d.getTime()+'"><input type="text" name="application_picture" value="'+image_url+'" style="display:none">';
-//     // reset camera for another shot
-//     webcam.reset();
-//     // $("#update_image").val("image");
-//   }
-//   else{
-//     alert("Python Error: " + msg);
-//   } 
-// }
+function my_completion_handler(msg) {
+  d = new Date();
+  if (msg != 'No data') {
+    var image_url = msg;
+    // show JPEG image in page
+    // Extra parameter for Image Caching
+    document.getElementById('picture-container').innerHTML = '<img src="' + image_url + '?'+d.getTime()+'"><input type="text" name="application_picture" value="'+image_url+'" style="display:none">';
+    // reset camera for another shot
+    webcam.reset();
+    // $("#update_image").val("image");
+  }
+  else{
+    alert("Python Error: " + msg);
+  } 
+}
 // End Webcam Scripts

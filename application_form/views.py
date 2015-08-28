@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.forms.formsets import formset_factory
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.conf import settings
 
 from easy_pdf.views import PDFTemplateView
 from easy_pdf.rendering import render_to_pdf_response
@@ -10,6 +11,7 @@ from easy_pdf.rendering import render_to_pdf_response
 from jsignature.utils import draw_signature
 
 from . forms import *
+from . models import *
 
 import os, shutil, datetime, random, string
 
@@ -19,17 +21,17 @@ import os, shutil, datetime, random, string
 def tmp_form(request):
 	scheme = request.scheme
 	http_host = request.META['HTTP_HOST']
-	# appdetails_form = AppDetailsForm()
-	# appsource_form = AppSourceForm()
-	# personaldata_form = PersonalDataForm()
-	# permanentaddress_form = PermanentAddressForm()
-	# currentaddress_form = CurrentAddressForm()
-	# spouse_form = SpouseForm()
-	# college_form = CollegeForm()
-	# highschool_form = HighSchoolForm()
-	# emergencycontact_form = EmergencyContactForm()
+	appdetails_form = AppDetailsForm()
+	appsource_form = AppSourceForm()
+	personaldata_form = PersonalDataForm()
+	permanentaddress_form = PermanentAddressForm()
+	currentaddress_form = CurrentAddressForm()
+	spouse_form = SpouseForm()
+	college_form = CollegeForm()
+	highschool_form = HighSchoolForm()
+	emergencycontact_form = EmergencyContactForm()
 
-	# backgroundinfo_form = BackgroundInformationForm()
+	backgroundinfo_form = BackgroundInformationForm()
 	passport_form = PassportForm()
 	sbook_form = SBookForm()
 	coc_form = COCForm()
@@ -39,30 +41,32 @@ def tmp_form(request):
 	usvisa_form = USVisaForm()
 	schengenvisa_form = SchengenVisaForm()
 	yellowfever_form = YellowFeverForm()
+	seaservice_form = formset_factory(SeaServiceForm, extra=10)
+	app_form = AppForm()
 
 
 	if request.method == 'POST':
 		request.POST = request.POST.copy()
-		# if request.POST['position_applied'] == 'Position Applied':
-		# 	request.POST['position_applied'] = ''
-		# if request.POST['alternative_position'] == 'Alternative Position':
-		# 	request.POST['alternative_position'] = ''
-		# if request.POST['civil_status'] == 'Civil Status':
-		# 	request.POST['civil_status'] = ''
+		if request.POST['position_applied'] == 'Position Applied':
+			request.POST['position_applied'] = ''
+		if request.POST['alternative_position'] == 'Alternative Position':
+			request.POST['alternative_position'] = ''
+		if request.POST['civil_status'] == 'Civil Status':
+			request.POST['civil_status'] = ''
 
 		print request.POST
 
-		# appdetails_form = AppDetailsForm(request.POST)
-		# appsource_form = AppSourceForm(request.POST)
-		# personaldata_form = PersonalDataForm(request.POST)
-		# permanentaddress_form = PermanentAddressForm(request.POST)
-		# currentaddress_form = CurrentAddressForm(request.POST)
-		# spouse_form = SpouseForm(request.POST)
-		# college_form = CollegeForm(request.POST)
-		# highschool_form = HighSchoolForm(request.POST)
-		# emergencycontact_form = EmergencyContactForm(request.POST)
+		appdetails_form = AppDetailsForm(request.POST)
+		appsource_form = AppSourceForm(request.POST)
+		personaldata_form = PersonalDataForm(request.POST)
+		permanentaddress_form = PermanentAddressForm(request.POST)
+		currentaddress_form = CurrentAddressForm(request.POST)
+		spouse_form = SpouseForm(request.POST)
+		college_form = CollegeForm(request.POST)
+		highschool_form = HighSchoolForm(request.POST)
+		emergencycontact_form = EmergencyContactForm(request.POST)
 
-		# backgroundinfo_form = BackgroundInformationForm(request.POST)
+		backgroundinfo_form = BackgroundInformationForm(request.POST)
 		passport_form = PassportForm(request.POST)
 		sbook_form = SBookForm(request.POST)
 		coc_form = COCForm(request.POST)
@@ -73,38 +77,48 @@ def tmp_form(request):
 		schengenvisa_form = SchengenVisaForm(request.POST)
 		yellowfever_form = YellowFeverForm(request.POST)
 
+		seaservice_form = seaservice_form(request.POST)
+		app_form = AppForm(request.POST)
 
-		if passport_form.is_valid() and sbook_form.is_valid() and coc_form.is_valid() and license_form.is_valid() and src_form.is_valid() and goc_form.is_valid() and usvisa_form.is_valid() and schengenvisa_form.is_valid() and yellowfever_form.is_valid():
-			# http://127.0.0.1:8003/media/photos/tmp/mpifcxpaoi.jpg
-			# tmp_application_picture = request.POST['application_picture']
-			# tmp_application_picture = tmp_application_picture.replace(scheme+"://"+http_host+"/", "")
-			# print tmp_application_picture
-			# application_picture = "media/photos/abcd.jpg"
-			# os.rename(tmp_application_picture, application_picture)
-			# application_picture = application_picture.replace("media/", "")
 
-			# appdetails = appdetails_form.save(commit=False)
-			# appsource = appsource_form.save(commit=False)
-			# appsource.specific = request.POST['specific']
-			# appsource.save()
-			# appdetails.appsource = appsource 
-			# appdetails.picture = application_picture
-			# appdetails.save()
+		if appdetails_form.is_valid() and appsource_form.is_valid() and personaldata_form.is_valid() and permanentaddress_form.is_valid() and currentaddress_form.is_valid() and spouse_form.is_valid() and college_form.is_valid() and highschool_form.is_valid() and emergencycontact_form.is_valid() and backgroundinfo_form.is_valid() and passport_form.is_valid() and sbook_form.is_valid() and coc_form.is_valid() and license_form.is_valid() and src_form.is_valid() and goc_form.is_valid() and usvisa_form.is_valid() and schengenvisa_form.is_valid() and yellowfever_form.is_valid() and seaservice_form.is_valid() and app_form.is_valid():
+			first_name = request.POST['first_name']
+			middle_name = request.POST['middle_name']
+			last_name = request.POST['last_name']
+			file_name = first_name+middle_name+last_name
+			file_name = "".join(file_name.split())
+			signature = app_form.cleaned_data.get('signatures')
+
+			tmp_application_picture = request.POST['application_picture']
+			tmp_application_picture = tmp_application_picture.replace(scheme+"://"+http_host+"/", "")
+			print tmp_application_picture
+			application_picture = "media/photos/"+file_name+".jpg"
+			os.rename(tmp_application_picture, application_picture)
+			application_picture = application_picture.replace("media/", "")
+			appdetails = appdetails_form.save(commit=False)
+			appsource = appsource_form.save(commit=False)
+			appsource.specific = request.POST['specific']
+			appsource.save()
+			appdetails.appsource = appsource 
+			appdetails.picture = application_picture
+			appdetails.save()
 			
-			# permanentaddress = permanentaddress_form.save()
-			# currentaddress = currentaddress_form.save()
-			# spouse = spouse_form.save()
-			# personaldata = personaldata_form.save(commit=False)
-			# personaldata.permanent_address = permanentaddress
-			# personaldata.current_address = currentaddress
-			# personaldata.spouse = spouse
-			# personaldata.save()
+			permanentaddress = permanentaddress_form.save()
+			currentaddress = currentaddress_form.save()
+			spouse = spouse_form.save()
+			personaldata = personaldata_form.save(commit=False)
+			personaldata.permanent_address = permanentaddress
+			personaldata.current_address = currentaddress
+			personaldata.spouse = spouse
+			personaldata.save()
 
-			# college_form = college_form.save()
-			# highschool_form = highschool_form.save()
-			# education = Education.objects.create(college=college_form, highschool=highschool_form)
+			college_form = college_form.save()
+			highschool_form = highschool_form.save()
+			education = Education.objects.create(college=college_form, highschool=highschool_form)
 
-			# emergencycontact_form.save()
+			emeregency = emergencycontact_form.save()
+
+			backgroundinfo = backgroundinfo_form.save()
 
 			passport = passport_form.save()
 			sbook = sbook_form.save()
@@ -116,21 +130,47 @@ def tmp_form(request):
 			schengenvisa = schengenvisa_form.save()
 			yellowfever = yellowfever_form.save()
 			certificates_documents = CertificatesDocuments.objects.create(passport=passport, sbook=sbook, coc=coc, license=license, src=src, goc=goc, us_visa=usvisa, schengen_visa=schengenvisa, yellow_fever=yellowfever)
+			
+			for form in seaservice_form:
+				m = form.save(commit=False)
+				m.personal_data = personaldata
+				m.save()
+
+			app_form = app_form.save(commit=False)
+			signature_path = "media/signature/"+file_name+".png"
+			if signature:
+				signature_picture = draw_signature(signature)
+				_signature_file_path = draw_signature(signature, as_file=True)
+				signature_file_path = settings.MEDIA_ROOT+"/signatures/"
+				shutil.move(_signature_file_path, signature_file_path)
+				_signature_file_path = _signature_file_path.replace('/tmp/', 'signatures/')
+			app_form.app_details = appdetails
+			app_form.signatures = _signature_file_path
+			app_form.personal_data = personaldata
+			app_form.education = education
+			app_form.emergency_contact = emeregency
+			app_form.background_information = backgroundinfo
+			app_form.certificates_documents = certificates_documents
+			app_form.save()
+
+			return HttpResponseRedirect('/application-form/success/?id='+app_form)
+			
+			
+
 
 
 		else:
-			# print "guinto"
-			# print appdetails_form.errors
-			# print appsource_form.errors
-			# print personaldata_form.errors
-			# print permanentaddress_form.errors
-			# print currentaddress_form.errors
-			# print spouse_form.errors
-			# print college_form.errors
-			# print highschool_form.errors
-			# print emergencycontact_form.errors
+			print appdetails_form.errors
+			print appsource_form.errors
+			print personaldata_form.errors
+			print permanentaddress_form.errors
+			print currentaddress_form.errors
+			print spouse_form.errors
+			print college_form.errors
+			print highschool_form.errors
+			print emergencycontact_form.errors
 
-			# print backgroundinfo_form.errors
+			print backgroundinfo_form.errors
 			print passport_form.errors
 			print sbook_form.errors
 			print coc_form.errors
@@ -141,31 +181,27 @@ def tmp_form(request):
 			print schengenvisa_form.errors
 			print yellowfever_form.errors
 
-			# print backgroundinfo_form.errors
-			print passport_form.errors
-			print sbook_form.errors
-			print coc_form.errors
-			print license_form.errors
-			print src_form.errors
-			print goc_form.errors
-			print usvisa_form.errors
-			print schengenvisa_form.errors
-			print yellowfever_form.errors
+			print seaservice_form.errors
+
+			print app_form.errors
 
 
 	template = "application_form/tmp_index.html"
 	context_dict = {"title": "Application Form"}
-	# context_dict['appdetails_form'] = appdetails_form
-	# context_dict['appsource_form'] = appsource_form
-	# context_dict['personaldata_form'] = personaldata_form
-	# context_dict['permanentaddress_form'] = permanentaddress_form
-	# context_dict['currentaddress_form'] = currentaddress_form
-	# context_dict['spouse_form'] = spouse_form
-	# context_dict['college_form'] = college_form
-	# context_dict['highschool_form'] = highschool_form
-	# context_dict['emergencycontact_form'] = emergencycontact_form
+	context_dict['appdetails_form'] = appdetails_form
+	context_dict['appsource_form'] = appsource_form
 
-	# context_dict['backgroundinfo_form'] = backgroundinfo_form
+	context_dict['personaldata_form'] = personaldata_form
+	context_dict['permanentaddress_form'] = permanentaddress_form
+	context_dict['currentaddress_form'] = currentaddress_form
+	context_dict['spouse_form'] = spouse_form
+	
+	context_dict['college_form'] = college_form
+	context_dict['highschool_form'] = highschool_form
+	
+	context_dict['emergencycontact_form'] = emergencycontact_form
+
+	context_dict['backgroundinfo_form'] = backgroundinfo_form
 	context_dict['passport_form']= passport_form
 	context_dict['sbook_form']= sbook_form
 	context_dict['coc_form']= coc_form
@@ -176,13 +212,17 @@ def tmp_form(request):
 	context_dict['schengenvisa_form']= schengenvisa_form
 	context_dict['yellowfever_form']= yellowfever_form
 
+	context_dict['seaservice_form'] = seaservice_form
+
+	context_dict['app_form'] = app_form
+
 	return render(request, template, context_dict)
 
 
 @login_required
 def success(request):
 	template = "application_form/success.html"
-	context_dict = {}
+	context_dict = {"title": "Thank You For Applying at Manship"}
 	return render(request, template, context_dict)
 
 @csrf_exempt
@@ -205,20 +245,59 @@ def tmp_image(request):
 
 
 
+# @login_required
+# def pdf_report(request, template):
+# 	if template:
+# 		if template == 'sea-service':
+# 			template = "application_form/pdf-report-sea-service.html"
+# 	# returns hypertext protocol: http or https
+# 		else:
+# 			template = "application_form/pdf-report.html"
+
+# 		domain = request.scheme
+# 		domain += "://"
+# 		# returns domain name
+# 		domain += request.META["HTTP_HOST"]
+# 		context_dict = {"domain":domain}
+# 		return render_to_pdf_response(request, template, context_dict)
+# 	else:
+# 		raise Http404("System Error.")
+
 @login_required
-def pdf_report(request, template):
-	if template:
-		if template == 'sea-service':
-			template = "application_form/pdf-report-sea-service.html"
-	# returns hypertext protocol: http or https
-		else:
-			template = "application_form/pdf-report.html"
+def pdf_report(request, id):
+	if id:
+		appform = AppForm.objects.get(id=1)
+		appdetails = appform.app_details
+		appsource = appdetails.appsource
+		personaldata = appform.personal_data
+		education = appform.education
+		emergency = appform.emergency_contact
+		backgroundinfo = appform.background_information
+		certificatesdocuments = appform.certificates_documents
+			
+		cayman_islands = personaldata.flags.filter(flags='Caymen Islands')
+		marshall_islands = personaldata.flags.filter(flags='Marshall Islands')
+		liberia = personaldata.flags.filter(flags='Liberia')
+		cyprus = personaldata.flags.filter(flags='Cyprus')
+		singapore = personaldata.flags.filter(flags='Singapore')
+		greek = personaldata.flags.filter(flags='Greek')
+
 
 		domain = request.scheme
 		domain += "://"
 		# returns domain name
 		domain += request.META["HTTP_HOST"]
-		context_dict = {"domain":domain}
+		media = domain+"/media/"
+		picture = media+str(appdetails.picture)
+		signature = media+str(appform.signatures)
+		check = domain+"/static/img/check.jpg"
+		uncheck = domain+"/static/img/uncheck.jpg"
+		logo = domain+"/static/img/small_logo.png"
+
+
+
+		template = "application_form/pdf-report.html"
+		context_dict = { "appform":appform, "appdetails":appdetails, "personaldata":personaldata, "education":education, "emergency":emergency, "backgroundinfo":backgroundinfo, "certificatesdocuments":certificatesdocuments, "domain":domain, "picture":picture , "signature":signature, "check":check, "uncheck":uncheck, "logo":logo, "appsource":appsource, "cayman_islands": cayman_islands, "marshall_islands": marshall_islands, "liberia":liberia, "cyprus":cyprus, "singapore":singapore, "greek":greek}
 		return render_to_pdf_response(request, template, context_dict)
 	else:
 		raise Http404("System Error.")

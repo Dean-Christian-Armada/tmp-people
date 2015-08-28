@@ -74,23 +74,23 @@ class Education(models.Model):
 
 
 class EmergencyContact(models.Model):
-	name = models.CharField(max_length=100, default=None)
-	contact = models.CharField(max_length=100, default=None)
+	emergency_name = models.CharField(max_length=100, default=None)
+	emergency_contact = models.CharField(max_length=100, default=None)
 	relationship = models.CharField(max_length=50, default=None)
 	# address = models.CharField(max_length=100, default=None)
-	street = models.CharField(max_length=50, default=None)
-	baranggay = models.CharField(max_length=50, default=None)
-	town = models.CharField(max_length=50, default=None)
-	municipality = models.CharField(max_length=50, default=None)
-	zip = models.PositiveIntegerField()
+	emergency_street = models.CharField(max_length=50, default=None)
+	emergency_baranggay = models.CharField(max_length=50, default=None)
+	emergency_town = models.CharField(max_length=50, default=None)
+	emergency_municipality = models.CharField(max_length=50, default=None)
+	emergency_zip = models.PositiveIntegerField()
 
 	def __str__(self):
-		return str(self.name)
+		return str(self.emergency_name)
 
 class BackgroundInformation(models.Model):
-	visa_application = models.BooleanField()
-	detained = models.BooleanField()
-	disciplinary_action = models.BooleanField()
+	visa_application = models.NullBooleanField()
+	detained = models.NullBooleanField()
+	disciplinary_action = models.NullBooleanField()
 
 	def __str__(self):
 		return "BackgroundInformation"
@@ -142,14 +142,14 @@ class GOC(models.Model):
 		return str(self.goc)
 
 class USVisa(models.Model):
-	usvisa_type = models.BooleanField()
+	usvisa_type = models.NullBooleanField()
 	usvisa_expiry = models.DateField()
 
 	def __str__(self):
 		return str(self.usvisa_type)
 
 class SchengenVisa(models.Model):
-	schengen_type = models.BooleanField()
+	schengen_type = models.NullBooleanField()
 	schengen_expiry = models.DateField()
 
 	def __str__(self):
@@ -191,12 +191,12 @@ class TrainingCertificates(models.Model):
 		return str(self.trainings_certificates)
 
 class Spouse(models.Model):
-	name =  models.CharField(max_length=100, null=True)
+	spouse_name =  models.CharField(max_length=100, null=True)
 	birthdate = models.DateField(default=None, null=True)
-	contact = models.CharField(max_length=100, null=True)
+	spouse_contact = models.CharField(max_length=100, null=True)
 
 	def __str__(self):
-		return self.name
+		return self.spouse_name
 
 class PermanentAddress(models.Model):
 	permanent_street = models.CharField(max_length=50, default=None)
@@ -251,6 +251,8 @@ class PersonalData(models.Model):
 	permanent_address = models.ForeignKey(PermanentAddress, default=None)
 	current_address = models.ForeignKey(CurrentAddress, default=None)
 	spouse = models.ForeignKey(Spouse, default=None)
+	flags = models.ManyToManyField(FlagDocuments)
+	training_certificates = models.ManyToManyField(TrainingCertificates)
 
 	def __str__(self):
 		name = "%s %s %s" % (self.first_name, self.middle_name, self.last_name, )
@@ -278,35 +280,34 @@ class AppForm(models.Model):
 	emergency_contact = models.OneToOneField('EmergencyContact')
 	background_information = models.OneToOneField('BackgroundInformation')
 	certificates_documents = models.OneToOneField('CertificatesDocuments')
-	reference = models.OneToOneField('Reference', default=None)
-	flags = models.ManyToManyField(FlagDocuments)
-	training_certificates = models.ManyToManyField(TrainingCertificates)
+	# reference = models.OneToOneField('Reference', default=None)
 	# sea_service = models.ForeignKey('SeaService', default=None)
 	essay = models.TextField(default=None)
-	signature = models.ImageField(upload_to='signatures', default=None)
+	# signature = models.ImageField(upload_to='signatures', default=None)
+	signatures = models.ImageField(upload_to='signatures', default=None, blank=True)
 
 	def __str__(self):
-		appform = "%s %s %s : %s" % (self.personal_data.first_name, self.personal_data.middle_name, self.personal_data.last_name, self.app_details.application_date )
-		return appform
+		# appform = "dean"
+		return str(self.id)
 
 class SeaService(models.Model):
-	app_form = models.ForeignKey('AppForm', default=None)
-	vessel_name = models.CharField(max_length=50, default=None)
-	vessel_type = models.CharField(max_length=50, default=None)
-	flag = models.CharField(max_length=50, default=None)
-	grt = models.PositiveIntegerField()
-	dwt = models.PositiveIntegerField(default=None)
-	year_built = models.PositiveIntegerField()
-	engine_type = models.CharField(max_length=50, default=None)
-	hp = models.PositiveIntegerField()
-	kw = models.PositiveIntegerField(default=None)
-	manning_agency = models.CharField(max_length=50, default=None)
-	principal = models.CharField(max_length=50, default=None)
-	date_joined = models.DateField()
-	date_left = models.DateField()
-	duration = models.PositiveIntegerField()
-	rank = models.CharField(max_length=50, default=None)
-	cause_of_discharge = models.CharField(max_length=100, default=None)
+	personal_data = models.ForeignKey('PersonalData', default=None)
+	vessel_name = models.CharField(max_length=50, default=None, blank=True, null=True)
+	vessel_type = models.CharField(max_length=50, default=None, blank=True, null=True)
+	flag = models.CharField(max_length=50, default=None, blank=True, null=True)
+	grt = models.PositiveIntegerField(blank=True, null=True)
+	dwt = models.PositiveIntegerField(default=None, blank=True, null=True)
+	year_built = models.PositiveIntegerField(blank=True, null=True)
+	engine_type = models.CharField(max_length=50, default=None, blank=True, null=True)
+	hp = models.PositiveIntegerField(blank=True, null=True)
+	kw = models.PositiveIntegerField(default=None, blank=True, null=True)
+	manning_agency = models.CharField(max_length=50, default=None, blank=True, null=True)
+	principal = models.CharField(max_length=50, default=None, blank=True, null=True)
+	date_joined = models.DateField(blank=True, null=True)
+	date_left = models.DateField(blank=True, null=True)
+	duration = models.PositiveIntegerField(blank=True, null=True)
+	rank = models.CharField(max_length=50, default=None, blank=True, null=True)
+	cause_of_discharge = models.CharField(max_length=100, default=None, blank=True, null=True)
 
 	def __str__(self):
 		return self.vessel_name
