@@ -46,21 +46,21 @@ class AppSource(models.Model):
 ##### START Educational Information
 
 class College(models.Model):
-	school = models.CharField(max_length=100, default=None)
+	college = models.CharField(max_length=100, default=None)
 	degree_obtained = models.CharField(max_length=50, default=None)
-	coll_from = models.DateField()
-	coll_to = models.DateField()
+	coll_from = models.PositiveIntegerField()
+	coll_to = models.PositiveIntegerField()
 
 	def __str__(self):
-		return str(self.school)
+		return str(self.college)
 
 class HighSchool(models.Model):
-	school = models.CharField(max_length=100, default=None)
-	hs_from = models.DateField()
-	hs_to = models.DateField()
+	highschool = models.CharField(max_length=100, default=None)
+	hs_from = models.PositiveIntegerField()
+	hs_to = models.PositiveIntegerField()
 
 	def __str__(self):
-		return str(self.school)
+		return str(self.highschool)
 
 
 class Education(models.Model):
@@ -68,7 +68,7 @@ class Education(models.Model):
 	highschool = models.OneToOneField('HighSchool')
 
 	def __str__(self):
-		return self.tertiary.school
+		return self.college.college
 
 ##### END Educational Information
 
@@ -100,66 +100,64 @@ class BackgroundInformation(models.Model):
 
 class Passport(models.Model):
 	passport = models.CharField(max_length=100, default=None, unique=True)
-	expiry = models.DateField()
-	place = models.CharField(max_length=50, default=None)
+	passport_expiry = models.DateField()
 
 	def __str__(self):
 		return str(self.passport)
 
 class SBook(models.Model):
 	sbook = models.CharField(max_length=100, default=None, unique=True)
-	expiry = models.DateField()
-	place = models.CharField(max_length=50, default=None)
+	sbook_expiry = models.DateField()
 
 	def __str__(self):
 		return str(self.sbook)
 
 class COC(models.Model):
 	coc = models.CharField(max_length=100, default=None, unique=True)
-	expiry = models.DateField()
-	rank = models.CharField(max_length=50, default=None)
+	coc_expiry = models.DateField()
+	coc_rank = models.CharField(max_length=50, default=None)
 
 	def __str__(self):
 		return str(self.coc)
 
 class License(models.Model):
 	license = models.CharField(max_length=50, default=None, unique=True)
-	rank = models.CharField(max_length=50, default=None)
+	license_rank = models.CharField(max_length=50, default=None)
 
 	def __str__(self):
 		return str(self.license)
 
 class SRC(models.Model):
 	src = models.CharField(max_length=50, default=None, unique=True)
-	rank = models.CharField(max_length=50, default=None)
+	src_rank = models.CharField(max_length=50, default=None)
 
 	def __str__(self):
 		return str(self.src)
 
 class GOC(models.Model):
 	goc = models.CharField(max_length=50, default=None, unique=True)
-	expiry = models.DateField()
+	goc_expiry = models.DateField()
 
 	def __str__(self):
 		return str(self.goc)
 
 class USVisa(models.Model):
-	type = models.BooleanField()
-	expiry = models.DateField()
+	usvisa_type = models.BooleanField()
+	usvisa_expiry = models.DateField()
 
 	def __str__(self):
-		return str(self.type)
+		return str(self.usvisa_type)
 
 class SchengenVisa(models.Model):
-	type = models.BooleanField()
-	expiry = models.DateField()
+	schengen_type = models.BooleanField()
+	schengen_expiry = models.DateField()
 
 	def __str__(self):
-		return str(self.type)
+		return str(self.schengen_type)
 
 class YellowFever(models.Model):
 	yellow_fever = models.PositiveIntegerField(unique=True)
-	expiry = models.DateField()
+	yellow_fever_expiry = models.DateField()
 
 	def __str__(self):
 		return str(self.yellow_fever)
@@ -172,7 +170,7 @@ class CertificatesDocuments(models.Model):
 	src = models.OneToOneField('SRC')
 	goc = models.OneToOneField('GOC')
 	us_visa = models.OneToOneField('USVisa')
-	schgengen_visa = models.OneToOneField('SchengenVisa')
+	schengen_visa = models.OneToOneField('SchengenVisa')
 	yellow_fever = models.OneToOneField('YellowFever')
 
 	def __str__(self):

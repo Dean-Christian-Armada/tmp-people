@@ -72,107 +72,109 @@
               <h3 id='step-2' style="color: #02be9b;">How did you learn about Manship?</h3>
               {{ appsource_form.source.errors }}
               {{ appsource_form.source }} -->
-              <h3 id='step-3' style="color: #02be9b;">Personal Data</h3>
+              
+
+              <!-- <h3 id='step-3' style="color: #02be9b;">Personal Data</h3>
               <div class="form-group">
                 <div class="col-md-4">
-                  <!-- <input type="text" data-toggle="tooltip" id="last_name" name="last_name" class="form-control" placeholder="Last Name"> -->
+                  
                   {{ personaldata_form.last_name|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"id:last_name"|attr:"placeholder:Last Name" }}
                   {{ personaldata_form.last_name.errors }}
                 </div>
                 <div class="col-md-4">
-                  <!-- <input type="text" data-toggle="tooltip" id="first_name" name="first_name" class="form-control" placeholder="First Name"> -->
+                  
                   {{ personaldata_form.first_name|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"id:first_name"|attr:"placeholder:First Name" }}
                   {{ personaldata_form.first_name.errors }}
                 </div>
                 <div class="col-md-4">
-                  <!-- <input type="text" data-toggle="tooltip" id="middle_name" name="middle_name" class="form-control" placeholder="Middle Name"> -->
+                  
                   {{ personaldata_form.middle_name|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"id:middle_name"|attr:"placeholder:Middle Name" }}
                   {{ personaldata_form.middle_name.errors }}
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-md-4">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control date birth_date" name="birth_date" placeholder="Date of Birth"> -->
+                  
                   {{ personaldata_form.birth_date|add_class:"form-control date birth_date"|attr:"data-toggle:tooltip"|attr:"placeholder:Date of Birth" }}
                   {{ personaldata_form.birth_date.errors }}
                 </div>
                 <div class="col-md-4">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control age" name="age" placeholder="Age" readonly=""> -->
+                  
                   {{ personaldata_form.age|add_class:"form-control age"|attr:"data-toggle:tooltip"|attr:"placeholder:Age"|attr:"readonly"|attr:"title: Fill up your Date of Birth" }}
                   {{ personaldata_form.age.errors }}
                 </div>
                 <div class="col-md-4">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control" name="birth_place" placeholder="Place of Birth"> -->
+                  
                   {{ personaldata_form.birth_place|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Place of Birth" }}
                   {{ personaldata_form.birth_place.errors }}
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-md-4">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control" name="landline_number_1" placeholder="Landline No. 1"> -->
+                  
                   {{ personaldata_form.landline_1|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Landline No. 1" }}
                   {{ personaldata_form.landline_1.errors }}
                 </div>
                 <div class="col-md-4">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control" name="mobile_number_1" placeholder="Mobile No. 1"> -->
+                  
                   {{ personaldata_form.mobile_1|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Mobile No. 1" }}
                   {{ personaldata_form.mobile_1.errors }}
                 </div>
                 <div class="col-md-4">
-                  <!-- <input type="email" data-toggle="tooltip" class="form-control" name="email_address_1" placeholder="Email Address 1"> -->
+                  
                   {{ personaldata_form.email_address_1|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Email Address 1" }}
                   {{ personaldata_form.email_address_1.errors }}
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-md-4">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control" name="landline_number_2" placeholder="Landline No. 2"> -->
+                  
                   {{ personaldata_form.landline_2|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Landline No. 2" }}
                   {{ personaldata_form.landline_2.errors }}
                 </div>
                 <div class="col-md-4">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control" name="mobile_number_2" placeholder="Mobile No. 2"> -->
+                  
                   {{ personaldata_form.mobile_2|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Mobile No. 2" }}
                   {{ personaldata_form.mobile_2.errors }}
                 </div>
                 <div class="col-md-4">
-                  <!-- <input type="email" data-toggle="tooltip" class="form-control" name="email_address_2" placeholder="Email Address 2"> -->
+                  
                   {{ personaldata_form.email_address_2|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Email Address 2" }}
                   {{ personaldata_form.email_address_2.errors }}
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-md-6">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control" name="preferred_vessel" placeholder="Preferred Type of Vessel"> -->
+                  
                   {{ personaldata_form.preferred_vessel_type|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Preferred Type of Vessel" }}
                   {{ personaldata_form.preferred_vessel_type.errors }}
                 </div>
                 <div class="col-md-6">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control date month-only" name="availability" id="availability" placeholder="Date of Availability"> -->
+                  
                   {{ personaldata_form.availability_date|add_class:"form-control date month-only"|attr:"data-toggle:tooltip"|attr:"placeholder:Date of Availability" }}
                   {{ personaldata_form.availability_date.errors }}
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-md-6">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control" name="sss" placeholder="S.S.S. No."> -->
+                  
                   {{ personaldata_form.sss|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:S.S.S. No." }}
                   {{ personaldata_form.sss.errors }}
                 </div>
                 <div class="col-md-6">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control" name="philhealth" placeholder="Philhealth No."> -->
+                  
                   {{ personaldata_form.philhealth|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Philhealth No." }}
                   {{ personaldata_form.philhealth.errors }}
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-md-6">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control" name="tin" placeholder="T.I.N."> -->
+                  
                   {{ personaldata_form.tin|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:T.I.N." }}
                   {{ personaldata_form.tin.errors }}
                 </div>
                 <div class="col-md-6">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control" name="pag_ibig" placeholder="Pagibig No."> -->
+                  
                   {{ personaldata_form.pagibig|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Pagibig No." }}
                   {{ personaldata_form.pagibig.errors }}
                 </div>
@@ -187,43 +189,27 @@
                   </div>
                 </div>
                 <div class="col-md-3">
-                  <!-- <input type="text" data-toggle="tooltip" id="permanent_street" name="permanent_street" class="form-control" placeholder="Street"> -->
+                  
                   {{ permanentaddress_form.permanent_street|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Street"|attr:"id:permanent_street" }}
                   {{ permanentaddress_form.permanent_street.errors }}
                 </div>
                 <div class="col-md-3">
-                  <!-- <input type="text" data-toggle="tooltip" id="permanent_baranggay" name="permanent_baranggay"  class="form-control" placeholder="Baranggay"> -->
+                  
                   {{ permanentaddress_form.permanent_baranggay|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Baranggay"|attr:"id:permanent_baranggay" }}
                   {{ permanentaddress_form.permanent_baranggay.errors }}
                 </div>
                 <div class="col-md-2">
-                  <!-- <select data-toggle="tooltip" id="permanent_town" name="permanent_town" class="form-control">
-                    <option selected>Town</option>
-                    <option>Bustos</option>
-                    <option>Marilao</option>
-                    <option>Bocaue</option>
-                    <option>Plaridel</option>
-                    <option>Sta. Maria</option>
-                  </select> -->
-                  <!-- <input type="text" data-toggle="tooltip" id="permanent_town" class="form-control" placeholder="Town"> -->
+      
                   {{ permanentaddress_form.permanent_town|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Town"|attr:"id:permanent_town" }}
                   {{ permanentaddress_form.permanent_town.errors }}
                 </div>
                 <div class="col-md-2">
-                  <!-- <select data-toggle="tooltip" id="permanent_municipality" name="permanent_municipality" class="form-control">
-                    <option selected>Municipality</option>
-                    <option>Bacacay</option>
-                    <option>Camalig</option>
-                    <option>Daraga</option>
-                    <option>Guinobatan</option>
-                    <option>Jovellar</option>
-                  </select> -->
-                  <!-- <input type="text" data-toggle="tooltip" id="permanent_municipality" class="form-control" placeholder="Municipality"> -->
+      
                   {{ permanentaddress_form.permanent_municipality|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Municipality"|attr:"id:permanent_municipality" }}
                   {{ permanentaddress_form.permanent_municipality.errors }}
                 </div>
                 <div class="col-md-2">
-                  <!-- <input type="text" data-toggle="tooltip" id="permanent_zip" name="permanent_zip" class="form-control" placeholder="ZIP Code"> -->
+                  
                   {{ permanentaddress_form.permanent_zip|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:ZIP Code"|attr:"id:permanent_zip" }}
                   {{ permanentaddress_form.permanent_zip.errors }}
                 </div>
@@ -243,90 +229,308 @@
                   </div>
                 </div>
                 <div class="col-md-3">
-                  <!-- <input type="text" data-toggle="tooltip" id="current_street" name="current_street" class="form-control" placeholder="Street"> -->
+                  
                   {{ currentaddress_form.current_street|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Street"|attr:"id:current_street" }}
                   {{ currentaddress_form.current_street.errors }}
                 </div>
                 <div class="col-md-3">
-                  <!-- <input type="text" data-toggle="tooltip" id="current_baranggay" name="current_baranggay" class="form-control" placeholder="Baranggay"> -->
+                  
                   {{ currentaddress_form.current_baranggay|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Baranggay"|attr:"id:current_baranggay" }}
                   {{ currentaddress_form.current_baranggay.errors }}
                 </div>
                 <div class="col-md-2">
-                 <!--  <select data-toggle="tooltip" id="current_town" name="current_town" class="form-control">
-                    <option selected>Town</option>
-                    <option>Bustos</option>
-                    <option>Marilao</option>
-                    <option>Bocaue</option>
-                    <option>Plaridel</option>
-                    <option>Sta. Maria</option>
-                  </select> -->
-                  <!-- <input type="text" data-toggle="tooltip" id="current_town" class="form-control" placeholder="Town"> -->
+      
                   {{ currentaddress_form.current_town|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Town"|attr:"id:current_town" }}
                   {{ currentaddress_form.current_town.errors }}
                 </div>
                 <div class="col-md-2">
-                 <!--  <select data-toggle="tooltip" id="current_municipality" name="current_municipality" class="form-control">
-                    <option selected>Municipality</option>
-                    <option>Bacacay</option>
-                    <option>Camalig</option>
-                    <option>Daraga</option>
-                    <option>Guinobatan</option>
-                    <option>Jovellar</option>
-                  </select> -->
-                  <!-- <input type="text" data-toggle="tooltip" id="current_municipality" class="form-control" placeholder="Municipality"> -->
+      
                   {{ currentaddress_form.current_municipality|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Municipality"|attr:"id:current_municipality" }}
                   {{ currentaddress_form.current_municipality.errors }}
                 </div>
                 <div class="col-md-2">
-                  <!-- <input type="text" data-toggle="tooltip" id="current_zip" name="current_zip" class="form-control" placeholder="ZIP Code"> -->
+                  
                   {{ currentaddress_form.current_zip|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:ZIP code"|attr:"id:current_zip" }}
                   {{ currentaddress_form.current_zip.errors }}
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-md-6">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control" name="civil_status" placeholder="Civil Status"> -->
+                  
                   {{ personaldata_form.civil_status|add_class:"form-control first-choice"|attr:"data-toggle:tooltip" }}
                   {{ personaldata_form.civil_status.errors }}
                 </div> 
                 <div class="col-md-6">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control date" name="date_married" placeholder="Date Married"> -->
+                  
                   {{ personaldata_form.married_date|add_class:"form-control date"|attr:"data-toggle:tooltip"|attr:"placeholder:Date of Marriage" }}
                   {{ personaldata_form.married_date.errors }}
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-md-6">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control" name="spouse_maiden_name" placeholder="Spouse's Maiden Name"> -->
+                  
                   {{ spouse_form.name|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Spouse's Maiden Name" }}
                   {{ spouse_form.name.errors }}
                 </div>
                 <div class="col-md-3">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control" name="spouse_birthday" placeholder="Spouse's Birthday"> -->
+                  
                   {{ spouse_form.birthdate|add_class:"form-control date"|attr:"data-toggle:tooltip"|attr:"placeholder:Spouse's birthday" }}
                   {{ spouse_form.birthdate.errors }}
                 </div>
                 <div class="col-md-3">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control" name="spouse_contact" placeholder="Spouse's Contact No."> -->
+                  
                   {{ spouse_form.contact|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Spouse's Contact No." }}
                   {{ spouse_form.contact.errors }}
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-md-6">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control" name="father_full_name" placeholder="Father's Full Name(include MIDDLE NAME)"> -->
+                  
                   {{ personaldata_form.father_name|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Father's Full Name(include MIDDLE NAME)" }}
                   {{ personaldata_form.father_name.errors }}
                 </div>
                 <div class="col-md-6">
-                  <!-- <input type="text" data-toggle="tooltip" class="form-control" name="mother_full_name" placeholder="Mother's Maiden Name(include MIDDLE NAME)"> -->
+                  
                   {{ personaldata_form.mother_name|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Mother's Full Name(include MIDDLE NAME)" }}
                   {{ personaldata_form.mother_name.errors }}
                 </div>
               </div>
 
 
+              <h3 id='step-4' style="color: #02be9b;">Educational Information</h3>
+              <div class="form-group">
+                <div class="col-md-4">
+                  
+                  {{ college_form.college|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:College" }}
+                  {{ college_form.college.errors }}
+                </div>
+                <div class="col-md-4">
+                  
+                  {{ college_form.degree_obtained|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Degree Obtained" }}
+                  {{ college_form.degree_obtained.errors }}
+                </div>
+                <div class="col-md-2">
+                  
+                  {{ college_form.coll_from|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:From" }}
+                  {{ college_form.coll_from.errors }}
+                </div>
+                <div class="col-md-2">
+                  
+                  {{ college_form.coll_to|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:To" }}
+                  {{ college_form.coll_to.errors }}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-md-8">
+                  
+                  {{ highschool_form.highschool|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Highschool" }}
+                  {{ highschool_form.highschool.errors }}
+                </div>
+                <div class="col-md-2">
+                  
+                  {{ highschool_form.hs_from|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:From" }}
+                  {{ highschool_form.hs_from.errors }}
+                </div>
+                <div class="col-md-2">
+                  
+                  {{ highschool_form.hs_to|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:To" }}
+                  {{ highschool_form.hs_to.errors }}
+                </div>
+              </div> -->
+
+              <!-- <h3 id='step-5' style="color: #02be9b;">Emergency Contact Details</h3>
+              <div class="form-group">
+                <div class="col-md-6">
+
+                  {{ emergencycontact_form.name|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Person to Contact in Case of Emergency" }}
+                  {{ emergencycontact_form.name.errors }}
+                </div>
+                <div class="col-md-3">
+
+                  {{ emergencycontact_form.contact|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Contact No." }}
+                  {{ emergencycontact_form.contact.errors }}
+                </div>
+                <div class="col-md-3">
+
+                  {{ emergencycontact_form.relationship|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Relationship" }}
+                  {{ emergencycontact_form.relationship.errors }}
+                </div>
+              </div>
+              <div class="form-group bottom-zero">
+                <div class="col-md-12">
+                  <div class="col-md-12">
+                    <span class="search-zip pull-right" data-params="emergency" style="">Search zip code</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-3">
+
+                  {{ emergencycontact_form.street|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Street" }}
+                  {{ emergencycontact_form.street.errors }}
+                </div>
+                <div class="col-md-3">
+
+                  {{ emergencycontact_form.baranggay|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Baranggay"|attr:"id:emergency_baranggay" }}
+                  {{ emergencycontact_form.baranggay.errors }}
+                </div>
+                <div class="col-md-2">
+                  {{ emergencycontact_form.town|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Town" }}
+                  {{ emergencycontact_form.town.errors }}
+                </div>
+                <div class="col-md-2">
+                  {{ emergencycontact_form.municipality|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Municipality"|attr:"id:emergency_municipality" }}
+                  {{ emergencycontact_form.municipality.errors }}
+                </div>
+                <div class="col-md-2">
+
+                  {{ emergencycontact_form.zip|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Zip Code" }}
+                  {{ emergencycontact_form.zip.errors }}
+                </div>
+              </div>
+
+
+              <h3 id='step-7' style="color: #02be9b;">Background Information</h3>
+                
+                <p>
+                  {{ backgroundinfo_form.visa_application.errors }}
+                  A.) Have you ever been denied an application for any visa or entry into another country?
+                  {{ backgroundinfo_form.visa_application }}
+                </p>
+                
+                <p>
+                  {{ backgroundinfo_form.detained.errors }}
+                  B.) Have you ever been detained or ordered to leave any country?
+                  {{ backgroundinfo_form.detained }}
+                </p>
+             
+                
+                <p>
+                  {{ backgroundinfo_form.disciplinary_action.errors }}
+                  C.) Have you ever been subject of any disciplinary action during an employment contract?
+                  {{ backgroundinfo_form.disciplinary_action }}
+                </p> -->
+
+                
+              <h3 id='step-8' style="color: #02be9b;">National Certificates and Travel Documents</h3>
+              <div class="form-group">
+                <div class="col-md-6">
+                  
+                  {{ passport_form.passport|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Passport No." }}
+                  {{ passport_form.passport.errors }} 
+                </div>
+                <div class="col-md-6">
+                  
+                  {{ passport_form.passport_expiry|add_class:"form-control date"|attr:"data-toggle:tooltip"|attr:"placeholder:Expiry" }}
+                  {{ passport_form.passport_expiry.errors }} 
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-6">
+                  
+                  {{ sbook_form.sbook|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:SBook No." }}
+                  {{ sbook_form.sbook.errors }} 
+                </div>
+                <div class="col-md-6">
+                  
+                  {{ sbook_form.sbook_expiry|add_class:"form-control date"|attr:"data-toggle:tooltip"|attr:"placeholder:Expiry" }}
+                  {{ sbook_form.sbook_expiry.errors }} 
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-4">
+                  
+                  {{ coc_form.coc|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:COC/COE" }}
+                  {{ coc_form.coc.errors }} 
+                </div>
+                <div class="col-md-4">
+                  
+                  {{ coc_form.coc_expiry|add_class:"form-control date"|attr:"data-toggle:tooltip"|attr:"placeholder: Expiry" }}
+                  {{ coc_form.coc_expiry.errors }} 
+                </div>
+                <div class="col-md-4">
+                  
+                  {{ coc_form.coc_rank|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Rank" }}
+                  {{ coc_form.coc_rank.errors }} 
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-6">
+                  
+                  {{ license_form.license|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:License" }}
+                  {{ license_form.license.errors }} 
+                </div>
+                <div class="col-md-6">
+                  
+                  {{ license_form.license_rank|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Rank" }}
+                  {{ license_form.license_rank.errors }} 
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-6">
+                  
+                  {{ src_form.src|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:SRC" }}
+                  {{ src_form.src.errors }} 
+                </div>
+                <div class="col-md-6">
+                  
+                  {{ src_form.src_rank|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Rank" }}
+                  {{ src_form.src_rank.errors }} 
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-6">
+                  
+                  {{ goc_form.goc|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:GOC" }}
+                  {{ goc_form.goc.errors }} 
+                </div>
+                <div class="col-md-6">
+                  
+                  {{ goc_form.goc_expiry|add_class:"form-control date"|attr:"data-toggle:tooltip"|attr:"placeholder:Expiry" }}
+                  {{ goc_form.goc_expiry.errors }} 
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-6">
+                  US Visa(C1/D)
+                  <!-- <input type="radio" data-toggle="tooltip" name="us_visa" value="yes"> Yes 
+                  <input type="radio" data-toggle="tooltip" name="us_visa" value="no"> No -->
+                  {{ usvisa_form.usvisa_type }}
+                  {{ usvisa_form.usvisa_type.errors }}
+                </div>
+                <div class="col-md-6">
+                  
+                  {{ usvisa_form.usvisa_expiry|add_class:"form-control date"|attr:"data-toggle:tooltip"|attr:"placeholder:Expiry" }}
+                  {{ usvisa_form.usvisa_expiry.errors }}
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-6">
+                  Schengen Visa(Type C)
+                  <!-- <input type="radio" data-toggle="tooltip" name="schengen_visa" value="yes"> Yes 
+                  <input type="radio" data-toggle="tooltip" name="schengen_visa" value="no"> No -->
+                  {{ schengenvisa_form.schengen_type }}
+                  {{ schengenvisa_form.schengen_type.errors }}
+                </div>
+                <div class="col-md-6">
+                  
+                  {{ schengenvisa_form.schengen_expiry|add_class:"form-control date"|attr:"data-toggle:tooltip"|attr:"placeholder:Expiry" }}
+                  {{ schengenvisa_form.schengen_expiry.errors }}
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-6">
+                  
+                  {{ yellowfever_form.yellow_fever|add_class:"form-control"|attr:"data-toggle:tooltip"|attr:"placeholder:Yellow Fever" }}
+                  {{ yellowfever_form.yellow_fever.errors }}
+                </div>
+                <div class="col-md-6">
+                  
+                  {{ yellowfever_form.yellow_fever_expiry|add_class:"form-control date"|attr:"data-toggle:tooltip"|attr:"placeholder:Expiry" }}
+                  {{ yellowfever_form.yellow_fever_expiry.errors }}
+                </div>
+              </div>
 
 
 

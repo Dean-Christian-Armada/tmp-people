@@ -111,37 +111,37 @@ class BackgroundInformationForm(forms.ModelForm):
 class PassportForm(forms.ModelForm):
 	class Meta:
 		model = Passport
-		fields = ('passport', 'expiry')
+		fields = ('passport', 'passport_expiry')
 		
 class SBookForm(forms.ModelForm):
 	class Meta:
 		model = SBook
-		fields = ('sbook', 'expiry')
+		fields = ('sbook', 'sbook_expiry')
 		
 class COCForm(forms.ModelForm):
 	class Meta:
 		model = COC
-		fields = ('coc', 'expiry', 'rank')
+		fields = ('coc', 'coc_expiry', 'coc_rank')
 		
 class LicenseForm(forms.ModelForm):
 	class Meta:
 		model = License
-		fields = ('license', 'rank')
+		fields = ('license', 'license_rank')
 		
 class SRCForm(forms.ModelForm):
 	class Meta:
 		model = SRC
-		fields = ('src', 'rank')
+		fields = ('src', 'src_rank')
 		
 class GOCForm(forms.ModelForm):
 	class Meta:
 		model = GOC
-		fields = ('goc', 'expiry')
+		fields = ('goc', 'goc_expiry')
 		
 class USVisaForm(forms.ModelForm):
 	class Meta:
 		model = USVisa
-		fields = ('type', 'expiry')
+		fields = ('usvisa_type', 'usvisa_expiry')
 
 	def __init__(self, *args, **kwargs):
 		CHOICES = (
@@ -150,14 +150,14 @@ class USVisaForm(forms.ModelForm):
 		)
 		super(USVisaForm, self).__init__(*args, **kwargs)
 
-		self.fields['type'].widget = forms.RadioSelect(choices=CHOICES, renderer=HorizontalRadioRenderer)
+		self.fields['usvisa_type'].widget = forms.RadioSelect(choices=CHOICES, renderer=HorizontalRadioRenderer)
 		# Sets the booleanfield as required
-		self.fields['type'].required = True
+		self.fields['usvisa_type'].required = True
 		
 class SchengenVisaForm(forms.ModelForm):
 	class Meta:
 		model = SchengenVisa
-		fields = ('type', 'expiry')
+		fields = ('schengen_type', 'schengen_expiry')
 
 	def __init__(self, *args, **kwargs):
 		CHOICES = (
@@ -166,14 +166,14 @@ class SchengenVisaForm(forms.ModelForm):
 		)
 		super(SchengenVisaForm, self).__init__(*args, **kwargs)
 
-		self.fields['type'].widget = forms.RadioSelect(choices=CHOICES, renderer=HorizontalRadioRenderer)
+		self.fields['schengen_type'].widget = forms.RadioSelect(choices=CHOICES, renderer=HorizontalRadioRenderer)
 		# Sets the booleanfield as required
-		self.fields['type'].required = True
+		self.fields['schengen_type'].required = True
 		
 class YellowFeverForm(forms.ModelForm):
 	class Meta:
 		model = YellowFever
-		fields = ('yellow_fever', 'expiry')
+		fields = ('yellow_fever', 'yellow_fever_expiry')
 
 class SeaServiceForm(forms.ModelForm):
 	SEASERVICE_CHOICES = (
