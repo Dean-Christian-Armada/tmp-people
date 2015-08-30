@@ -9,5 +9,6 @@ urlpatterns = [
 	url(r'^success/$', views.success, name='success'),
 	# url(r'^pdf-report/$', views.pdf_report, name='pdf_report'),
 	url(r'^pdf-report/(?P<id>[0-9]*)/$', views.pdf_report, name='pdf_report'),
+	url(r'^pdf-report/sea-services/(?P<id>[0-9]*)/$', views.pdf_report_sea_services, name='pdf_report_sea_services'),
 	# url(r'^pdf-report/(?P<id>[0-9]*)/(?P<template>[\w\-]*)/$', views.pdf_report, name='pdf_report'),
 ]

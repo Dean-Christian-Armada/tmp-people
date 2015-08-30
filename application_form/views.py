@@ -264,9 +264,19 @@ def tmp_image(request):
 # 		raise Http404("System Error.")
 
 @login_required
+def pdf_report_sea_services(request, id):
+	if id:
+		sea_service = SeaService.objects.filter(personal_data=id)
+		template = "application_form/pdf-report-sea-service.html"
+		context_dict = {}
+		context_dict['sea_service'] = sea_service
+		return render_to_pdf_response(request, template, context_dict)
+
+
+@login_required
 def pdf_report(request, id):
 	if id:
-		appform = AppForm.objects.get(id=1)
+		appform = AppForm.objects.get(id=id)
 		appdetails = appform.app_details
 		appsource = appdetails.appsource
 		personaldata = appform.personal_data
@@ -281,6 +291,59 @@ def pdf_report(request, id):
 		cyprus = personaldata.flags.filter(flags='Cyprus')
 		singapore = personaldata.flags.filter(flags='Singapore')
 		greek = personaldata.flags.filter(flags='Greek')
+
+		cop_bt = personaldata.training_certificates.filter(trainings_certificates='Certificate of Proficiency / Basic Training')
+		cop_btoc = personaldata.training_certificates.filter(trainings_certificates='Certificate of Proficiency / Basic Training for Oil and Chemical Tanker')
+		cop_atot = personaldata.training_certificates.filter(trainings_certificates='Certificate of Proficiency / Advance Training for Oil Tanker')
+		cop_atct = personaldata.training_certificates.filter(trainings_certificates='Certificate of Proficiency / Advance Training for Chemical Tanker')
+		cop_pfrb = personaldata.training_certificates.filter(trainings_certificates='Certificate of Proficiency / Proficiency in Fast Rescue Boat')
+		cop_aff = personaldata.training_certificates.filter(trainings_certificates='Certificate of Proficiency / Advance Fire Fighting')
+		cop_mefa = personaldata.training_certificates.filter(trainings_certificates='Certificate of Proficiency / Medical Emergency First Aid')
+		cop_meca = personaldata.training_certificates.filter(trainings_certificates='	Certificate of Proficiency / Meical Care')
+		cop_sso = personaldata.training_certificates.filter(trainings_certificates='Certificate of Proficiency / Ship Security Officer')
+		cop_pscrb = personaldata.training_certificates.filter(trainings_certificates='	Certificate of Proficiency / Proficiency in Survival Craft and Rescue Boat')
+		cop_ssa_sdsd = personaldata.training_certificates.filter(trainings_certificates='Certificate of Proficiency / Ship Security Awareness / Seafarers with Designated Security Duties')
+		bt = personaldata.training_certificates.filter(trainings_certificates='Basic Training')
+		pscrb = personaldata.training_certificates.filter(trainings_certificates='Proficiency in Survival Craft and Recue Boat')
+		aff = personaldata.training_certificates.filter(trainings_certificates='Advance Fire Fighting')
+		mefa = personaldata.training_certificates.filter(trainings_certificates='Medical Emergency First Aid')
+		meca = personaldata.training_certificates.filter(trainings_certificates='Medical Care')
+		pfrb = personaldata.training_certificates.filter(trainings_certificates='Proficiency in Fast Rescue Boat')
+		ssbt = personaldata.training_certificates.filter(trainings_certificates='Ship Simulator and Bridge Team Work')
+		brm = personaldata.training_certificates.filter(trainings_certificates='Bridge Resource Management')
+		btm = personaldata.training_certificates.filter(trainings_certificates='Bridge Team Management')
+		btoc = personaldata.training_certificates.filter(trainings_certificates='Basic Training for Oil and Chemical Tanker Cargo Operations')
+		sbff = personaldata.training_certificates.filter(trainings_certificates='Shore Based Fire Fighting')
+		atot = personaldata.training_certificates.filter(trainings_certificates='Advance Training for Oil Tanker')
+		atct = personaldata.training_certificates.filter(trainings_certificates='Advance Training for Chemical Tanker')
+		inmarsat = personaldata.training_certificates.filter(trainings_certificates='International Maritime Satellite')
+		gmdss = personaldata.training_certificates.filter(trainings_certificates='Global Maritime Distress and Safety System')
+		padams = personaldata.training_certificates.filter(trainings_certificates='Prevention of Alcohol and Drug Abuse in the Maritime Sector')
+		hazmat = personaldata.training_certificates.filter(trainings_certificates='Hazardous Material')
+		cow_igs = personaldata.training_certificates.filter(trainings_certificates='Crude Oil Washing / Inert Gas System')
+		ers_erm = personaldata.training_certificates.filter(trainings_certificates='Engine Room Simulator with Engine Room Management')
+		srroc = personaldata.training_certificates.filter(trainings_certificates='Ship Restricted Radiotelephone Operator Course')
+		framo = personaldata.training_certificates.filter(trainings_certificates='FRAMO')
+		sos = personaldata.training_certificates.filter(trainings_certificates='Ship Security Officer')
+		soc = personaldata.training_certificates.filter(trainings_certificates='Safety Officer Course')
+		bwk_ewk = personaldata.training_certificates.filter(trainings_certificates='Deck Watch Keeping / Engine Watch Keeping')
+		rsc = personaldata.training_certificates.filter(trainings_certificates='Radar Simulator Course')
+		ism = personaldata.training_certificates.filter(trainings_certificates='International Safety Management')
+		ssmep = personaldata.training_certificates.filter(trainings_certificates='Shipboard Managerial Skills Enhancement Program')
+		acni = personaldata.training_certificates.filter(trainings_certificates='Accident and Near-miss Investigation')
+		ssa_sdsd = personaldata.training_certificates.filter(trainings_certificates='Ship Security Awareness / Seafarers with Designated Security Duties')
+		arpa_ropa = personaldata.training_certificates.filter(trainings_certificates='Radar Navigation / Radar Plotting and use of ARPA ROPA')
+		ecdis_generic = personaldata.training_certificates.filter(trainings_certificates='Electronic Chart Display and Information System')
+		mlc_deck = personaldata.training_certificates.filter(trainings_certificates='Management Level Course - Deck')
+		marpol = personaldata.training_certificates.filter(trainings_certificates='Marine Pollution I-VI')
+		mlc_engine = personaldata.training_certificates.filter(trainings_certificates='Management Level Course - Engine')
+		ecdis_specific = personaldata.training_certificates.filter(trainings_certificates='Electronic Chart Display and Information System Specific')
+		ship_vetting = personaldata.training_certificates.filter(trainings_certificates='Ship Vetting')
+		ship_handling = personaldata.training_certificates.filter(trainings_certificates='Ship Handling')
+		maritime_eng = personaldata.training_certificates.filter(trainings_certificates='Maritime Eng.')
+
+
+
 
 
 		domain = request.scheme
@@ -297,7 +360,7 @@ def pdf_report(request, id):
 
 
 		template = "application_form/pdf-report.html"
-		context_dict = { "appform":appform, "appdetails":appdetails, "personaldata":personaldata, "education":education, "emergency":emergency, "backgroundinfo":backgroundinfo, "certificatesdocuments":certificatesdocuments, "domain":domain, "picture":picture , "signature":signature, "check":check, "uncheck":uncheck, "logo":logo, "appsource":appsource, "cayman_islands": cayman_islands, "marshall_islands": marshall_islands, "liberia":liberia, "cyprus":cyprus, "singapore":singapore, "greek":greek}
+		context_dict = { "appform":appform, "appdetails":appdetails, "personaldata":personaldata, "education":education, "emergency":emergency, "backgroundinfo":backgroundinfo, "certificatesdocuments":certificatesdocuments, "domain":domain, "picture":picture , "signature":signature, "check":check, "uncheck":uncheck, "logo":logo, "appsource":appsource, "cayman_islands": cayman_islands, "marshall_islands": marshall_islands, "liberia":liberia, "cyprus":cyprus, "singapore":singapore, "greek":greek, "cop_bt":cop_bt, "cop_btoc":cop_btoc, "cop_atot":cop_atot, "cop_atct":cop_atct, "cop_pfrb":cop_pfrb, "cop_aff":cop_aff, "cop_mefa":cop_mefa, "cop_meca":cop_meca, "cop_sso":cop_sso, "cop_pscrb":cop_pscrb, "cop_ssa_sdsd":cop_ssa_sdsd, "bt":bt, "pscrb":pscrb, "aff":aff, "mefa":mefa, "meca":meca, "pfrb":pfrb, "ssbt":ssbt, "brm":brm, "btm":btm, "btoc":btoc, "sbff":sbff, "atot":atot, "atct":atct, "inmarsat":inmarsat, "gmdss":gmdss, "padams":padams, "hazmat":hazmat, "cow_igs":cow_igs, "ers_erm":ers_erm, "srroc":srroc, "framo":framo, "sos":sos, "soc":soc, "bwk_ewk":bwk_ewk, "rsc":rsc, "ism":ism, "ssmep":ssmep, "acni":acni, "ssa_sdsd":ssa_sdsd, "arpa_ropa":arpa_ropa, "ecdis_generic":ecdis_generic, "mlc_deck":mlc_deck, "marpol":marpol, "mlc_engine":mlc_engine, "ecdis_specific":ecdis_specific, "ship_vetting":ship_vetting, "ship_handling":ship_handling, "maritime_eng":maritime_eng}
 		return render_to_pdf_response(request, template, context_dict)
 	else:
 		raise Http404("System Error.")

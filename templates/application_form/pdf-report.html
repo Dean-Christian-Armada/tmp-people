@@ -398,23 +398,23 @@
 		<tr>
 			<td style="padding: 0px;">
 				<table border="1">
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:check }}"> COP-BT</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:check }}"> COP-BTOC</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> COP-ATOT</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> COP-ATCT</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> COP-PFRB</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> COP-AFF</td>
+					<td style="padding-bottom:5px;">{% if cop_bt %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} COP-BT</td>
+					<td style="padding-bottom:5px;">{% if cop_btoc %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} COP-BTOC</td>
+					<td style="padding-bottom:5px;">{% if cop_atot %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} COP-ATOT</td>
+					<td style="padding-bottom:5px;">{% if cop_atct %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} COP-ATCT</td>
+					<td style="padding-bottom:5px;">{% if cop_pfrb %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} COP-PFRB</td>
+					<td style="padding-bottom:5px;">{% if cop_aff %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} COP-AFF</td>
 				</table>
 			</td>
 		</tr>
 		<tr>
 			<td style="padding: 0px;">
 				<table border="1">
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:check }}"> COP-MEFA</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:check }}"> COP-MECA</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> COP-SSO</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> COP-PSCRB</td>
-					<td style="padding-bottom:5px;" colspan="2"><img src="{{ ressource.image.url|get64:uncheck }}"> COP-SSA/SDSD</td>
+					<td style="padding-bottom:5px;">{% if cop_mefa %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} COP-MEFA</td>
+					<td style="padding-bottom:5px;">{% if cop_meca %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} COP-MECA</td>
+					<td style="padding-bottom:5px;">{% if cop_sso %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} COP-SSO</td>
+					<td style="padding-bottom:5px;">{% if cop_pscrb %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} COP-PSCRB</td>
+					<td style="padding-bottom:5px;" colspan="2">{% if cop_ssa_sdsd %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} COP-SSA/SDSD</td>
 				</table>
 			</td>
 		</tr>
@@ -424,71 +424,71 @@
 		<tr>
 			<td style="padding: 0px;">
 				<table border="1">
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> BT</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> PSCRB</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:check }}"> AFF</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:check }}"> MEFA</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> MECA</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> PFRB</td>
+					<td style="padding-bottom:5px;">{% if bt %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} BT</td>
+					<td style="padding-bottom:5px;">{% if pscrb %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} PSCRB</td>
+					<td style="padding-bottom:5px;">{% if aff %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} AFF</td>
+					<td style="padding-bottom:5px;">{% if mefa %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} MEFA</td>
+					<td style="padding-bottom:5px;">{% if meca %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} MECA</td>
+					<td style="padding-bottom:5px;">{% if pfrb %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} PFRB</td>
 				</table>
 			</td>
 		</tr>
 		<tr>
 			<td style="padding: 0px;">
 				<table border="1">
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> SSBT</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> BRM</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:check }}"> BTM</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:check }}"> BTOC</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> SBFF</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> ATOT</td>
+					<td style="padding-bottom:5px;">{% if ssbt %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} SSBT</td>
+					<td style="padding-bottom:5px;">{% if brm %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} BRM</td>
+					<td style="padding-bottom:5px;">{% if btm %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} BTM</td>
+					<td style="padding-bottom:5px;">{% if btoc %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} BTOC</td>
+					<td style="padding-bottom:5px;">{% if sbff %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} SBFF</td>
+					<td style="padding-bottom:5px;">{% if atot %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} ATOT</td>
 				</table>
 			</td>
 		</tr>
 		<tr>
 			<td style="padding: 0px;">
 				<table border="1">
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> ATCT</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> INMARSAT</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:check }}"> GMDSS</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:check }}"> PADAMS</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> HAZMAT</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> COW/IGS</td>
+					<td style="padding-bottom:5px;">{% if atct %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} ATCT</td>
+					<td style="padding-bottom:5px;">{% if inmarsat %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} INMARSAT</td>
+					<td style="padding-bottom:5px;">{% if gmdss %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} GMDSS</td>
+					<td style="padding-bottom:5px;">{% if padams %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} PADAMS</td>
+					<td style="padding-bottom:5px;">{% if hazmat %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} HAZMAT</td>
+					<td style="padding-bottom:5px;">{% if cow_igs %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} COW/IGS</td>
 				</table>
 			</td>
 		</tr>
 		<tr>
 			<td style="padding: 0px;">
 				<table border="1">
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> ERS/ERM</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> SRROC</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:check }}"> FRAMO</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:check }}"> SOS</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> SOC</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> BWK/EWK</td>
+					<td style="padding-bottom:5px;">{% if ers_erm %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} ERS/ERM</td>
+					<td style="padding-bottom:5px;">{% if srroc %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} SRROC</td>
+					<td style="padding-bottom:5px;">{% if framo %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} FRAMO</td>
+					<td style="padding-bottom:5px;">{% if sos %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} SOS</td>
+					<td style="padding-bottom:5px;">{% if soc %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} SOC</td>
+					<td style="padding-bottom:5px;">{% if bwk_ewk %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} BWK/EWK</td>
 				</table>
 			</td>
 		</tr>
 		<tr>
 			<td style="padding: 0px;">
 				<table border="1">
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> RSC</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> ISM</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:check }}"> SSMEP</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:check }}"> ACNI</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> SSA/SDSD</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> ARPA/ROPA</td>
+					<td style="padding-bottom:5px;">{% if rsc %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} RSC</td>
+					<td style="padding-bottom:5px;">{% if ism %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} ISM</td>
+					<td style="padding-bottom:5px;">{% if ssmep %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} SSMEP</td>
+					<td style="padding-bottom:5px;">{% if acni %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} ACNI</td>
+					<td style="padding-bottom:5px;">{% if ssa_sdsd %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} SSA/SDSD</td>
+					<td style="padding-bottom:5px;">{% if arpa_ropa %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} ARPA/ROPA</td>
 				</table>
 			</td>
 		</tr>
 		<tr>
 			<td style="padding: 0px;">
 				<table border="1">
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> ECDIS GENERIC</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> MLC - Deck</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> MARPOL I-VI</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> MLC - Engine</td>
-					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:uncheck }}"> ECDIS Specific</td>
+					<td style="padding-bottom:5px;">{% if ecdis_generic %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} ECDIS GENERIC</td>
+					<td style="padding-bottom:5px;">{% if mlc_deck %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} MLC - DECK</td>
+					<td style="padding-bottom:5px;">{% if marpol %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} MARPOL I-VI</td>
+					<td style="padding-bottom:5px;">{% if mlc_engine %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} MLC - ENGINE</td>
+					<td style="padding-bottom:5px;">{% if ecdis_specific %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} ECDIS SPECIFIC</td>
 				</table>
 			</td>
 		</tr>
@@ -496,9 +496,9 @@
 			<td style="padding: 0px;">
 				<table border="1">
 					
-					<td style="padding-bottom:5px;" colspan="2"><img src="{{ ressource.image.url|get64:uncheck }}"> SHIP VETTING</td>
-					<td style="padding-bottom:5px;" colspan="2"><img src="{{ ressource.image.url|get64:check }}"> SHIP HANDLING</td>
-					<td style="padding-bottom:5px;" colspan="2"><img src="{{ ressource.image.url|get64:check }}"> MARITIME ENG.</td>
+					<td style="padding-bottom:5px;" colspan="2">{% if ship_vetting %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} SHIP VETTING</td>
+					<td style="padding-bottom:5px;" colspan="2">{% if ship_handling %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} SHIP HANDLING</td>
+					<td style="padding-bottom:5px;" colspan="2">{% if maritime_eng %}<img src="{{ ressource.image.url|get64:check }}">{% else %}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %} MARITIME ENG.</td>
 					
 				</table>
 			</td>
