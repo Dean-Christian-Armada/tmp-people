@@ -54,12 +54,12 @@ class AppSourceForm(forms.ModelForm):
 
 class PersonalDataForm(forms.ModelForm):
 	age = forms.IntegerField(error_messages={'required': 'Please Fill up your Date of Birth'})
-	flags = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(renderer=HorizontalCheckboxRenderer), queryset=FlagDocuments.objects.filter(~Q(flags='None')))
+	flags = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(renderer=HorizontalCheckboxRenderer), queryset=FlagDocuments.objects.filter(~Q(flags='None')), required=False)
 	training_certificates = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(renderer=HorizontalCheckboxRenderer), queryset=TrainingCertificates.objects.all(), error_messages={'required': 'Please do not forget to select among the trainings and certificates'})
 	class Meta:
 		model = PersonalData
 		fields = '__all__'
-		exclude = ('permanent_address', 'spouse', 'current_address', 'training_certificates')
+		exclude = ('permanent_address', 'spouse', 'current_address')
 
 class PermanentAddressForm(forms.ModelForm):
 	class Meta:
@@ -218,29 +218,9 @@ class SeaServiceForm(forms.ModelForm):
 		fields = '__all__'
 		exclude = ('personal_data', )
 
-class AppForm(forms.ModelForm):
+class AppForms(forms.ModelForm):
 	signatures = JSignatureField(widget=JSignatureWidget(jsignature_attrs={'color': '#000'}), error_messages={'required': 'Please do not forget to sign before submitting'})	
 	essay = forms.CharField(widget=forms.Textarea(attrs={'class':"form-control essay", 'id':"essay"}))
 	class Meta:
 		model = AppForm
 		fields = ('essay', 'signatures')
-
-# class CertificatesDocumentsForm(forms.ModelForm):
-# 	class Meta:
-# 		model = CertificatesDocuments
-
-# class SignatureFormForm(forms.Form):
-# 	# pass
-# 	signature = JSignatureField(widget=JSignatureWidget(jsignature_attrs={'color': '#CCC'}))
-	
-		
-# class ReferenceForm(forms.ModelForm):
-# 	class Meta:
-# 		model = Reference
-		
-
-
-# class SampleFormForm(forms.ModelForm):
-# 	class Meta:
-# 		model = Sample
-# 		fields = ('name', 'picture') 

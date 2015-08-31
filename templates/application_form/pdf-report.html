@@ -4,7 +4,7 @@
 {% static "img/small_logo.png" as small_logo %}
 {# ressource.image.url|get64:domain|add:small_logo #}
 <!-- {{ domain }}/media/{{ appdetails.picture }} -->
-{# ressource.image.url|get64:signature }}
+{# ressource.image.url|get64:signature #}
 {# ressource.image.url|get64:'http://deanchrisarmada.com/static/img/check.jpg' #}
 {# ressource.image.url|get64:'http://deanchrisarmada.com/static/img/uncheck.jpg' #}
 {# ressource.image.url|get64:'http://deanchrisarmada.com/static/img/small_logo.png' #}
@@ -145,9 +145,8 @@
 			<td style="padding: 0px;">
 				<table border="1">
 					<td>Street: <br /><u>{{ personaldata.permanent_address.permanent_street }}</u></td>
-					<td>Baranggay: <br /><u>{{ personaldata.permanent_address.permanent_baranggay }}</u></td>
-					<td>Town: <br /><u>{{ personaldata.permanent_address.permanent_town }}</u></td>
-					<td>Municipality: <br /><u>{{ personaldata.permanent_address.permanent_municipality }}</u></td>
+					<td>Barangay: <br /><u>{{ personaldata.permanent_address.permanent_baranggay }}</u></td>
+					<td>City/Municipality: <br /><u>{{ personaldata.permanent_address.permanent_municipality }}</u></td>
 					<td>Zip Code: <br /><u>{{ personaldata.permanent_address.permanent_zip }}</u></td>
 				</table>
 			</td>
@@ -159,9 +158,8 @@
 			<td style="padding: 0px;">
 				<table border="1">
 					<td>Street: <br /><u>{{ personaldata.current_address.current_street }}</u></td>
-					<td>Baranggay: <br /><u>{{ personaldata.current_address.current_baranggay }}</u></td>
-					<td>Town: <br /><u>{{ personaldata.current_address.current_town }}</u></td>
-					<td>Municipality: <br /><u>{{ personaldata.current_address.current_municipality }}</u></td>
+					<td>Barangay: <br /><u>{{ personaldata.current_address.current_baranggay }}</u></td>
+					<td>City/Municipality: <br /><u>{{ personaldata.current_address.current_municipality }}</u></td>
 					<td>Zip Code: <br /><u>{{ personaldata.current_address.current_zip }}</u></td>
 				</table>
 			</td>
@@ -235,9 +233,8 @@
 			<td style="padding: 0px;">
 				<table border="1">
 					<td>Street: <br /><u>{{ emergency.emergency_street }}</u></td>
-					<td>Baranggay: <br /><u>{{ emergency.emergency_baranggay }}</u></td>
-					<td>Town: <br /><u>{{ emergency.emergency_town }}</u></td>
-					<td>Municipality: <br /><u>{{ emergency.emergency_municipality }}</u></td>
+					<td>Barangay: <br /><u>{{ emergency.emergency_baranggay }}</u></td>
+					<td>City/Municipality: <br /><u>{{ emergency.emergency_municipality }}</u></td>
 					<td>Zip Code: <br /><u>{{ emergency.emergency_zip }}</u></td>
 				</table>
 			</td>

@@ -80,7 +80,7 @@ class EmergencyContact(models.Model):
 	# address = models.CharField(max_length=100, default=None)
 	emergency_street = models.CharField(max_length=50, default=None)
 	emergency_baranggay = models.CharField(max_length=50, default=None)
-	emergency_town = models.CharField(max_length=50, default=None)
+	# emergency_town = models.CharField(max_length=50, default=None)
 	emergency_municipality = models.CharField(max_length=50, default=None)
 	emergency_zip = models.PositiveIntegerField()
 
@@ -191,9 +191,9 @@ class TrainingCertificates(models.Model):
 		return str(self.trainings_certificates)
 
 class Spouse(models.Model):
-	spouse_name =  models.CharField(max_length=100, null=True)
-	birthdate = models.DateField(default=None, null=True)
-	spouse_contact = models.CharField(max_length=100, null=True)
+	spouse_name =  models.CharField(max_length=100, null=True, blank=True)
+	birthdate = models.DateField(default=None, null=True, blank=True)
+	spouse_contact = models.CharField(max_length=100, null=True, blank=True)
 
 	def __str__(self):
 		return self.spouse_name
@@ -201,23 +201,23 @@ class Spouse(models.Model):
 class PermanentAddress(models.Model):
 	permanent_street = models.CharField(max_length=50, default=None)
 	permanent_baranggay = models.CharField(max_length=50, default=None)
-	permanent_town = models.CharField(max_length=50, default=None)
+	# permanent_town = models.CharField(max_length=50, default=None)
 	permanent_municipality = models.CharField(max_length=50, default=None)
 	permanent_zip = models.PositiveIntegerField()
 
 	def __str__(self):
-		address = "%s %s %s %s %s" % (self.permanent_street, self.permanent_baranggay, self.permanent_town, self.permanent_municipality, self.permanent_zip)
+		address = "%s %s %s %s" % (self.permanent_street, self.permanent_baranggay, self.permanent_municipality, self.permanent_zip)
 		return address
 
 class CurrentAddress(models.Model):
 	current_street = models.CharField(max_length=50, default=None)
 	current_baranggay = models.CharField(max_length=50, default=None)
-	current_town = models.CharField(max_length=50, default=None)
+	# current_town = models.CharField(max_length=50, default=None)
 	current_municipality = models.CharField(max_length=50, default=None)
 	current_zip = models.PositiveIntegerField()
 
 	def __str__(self):
-		address = "%s %s %s %s %s" % (self.current_street, self.current_baranggay, self.current_town, self.current_municipality, self.current_zip)
+		address = "%s %s %s %s" % (self.current_street, self.current_baranggay, self.current_municipality, self.current_zip)
 		return address
 
 class PersonalData(models.Model):
@@ -225,6 +225,8 @@ class PersonalData(models.Model):
 			('Civil Status', 'Civil Status'),
 			('M', 'Married'),
             ('S', 'Single'),
+            ('LS', 'Legally Separated'),
+            ('W', 'Widow'),
 		)
 	last_name = models.CharField(max_length=50, default=None)
 	first_name = models.CharField(max_length=50, default=None)
@@ -240,10 +242,10 @@ class PersonalData(models.Model):
 	email_address_2 = models.EmailField(default=None, blank=True, null=True)
 	preferred_vessel_type = models.CharField(max_length=50, default=None)
 	availability_date = models.CharField(max_length=50, default=None)
-	sss = models.CharField(max_length=50, default=None)
-	philhealth = models.CharField(max_length=50, default=None)
-	tin = models.CharField(max_length=50, default=None)
-	pagibig = models.CharField(max_length=50, default=None)
+	sss = models.CharField(max_length=50, blank=True, null=True, default=None)
+	philhealth = models.CharField(max_length=50, blank=True, null=True, default=None)
+	tin = models.CharField(max_length=50, blank=True, null=True, default=None)
+	pagibig = models.CharField(max_length=50, blank=True, null=True, default=None)
 	civil_status = models.CharField(max_length=50, default=None, choices=CIVIL_CHOICES)
 	married_date = models.DateField(default=None, null=True, blank=True)
 	father_name = models.CharField(max_length=100, null=True)
@@ -251,7 +253,7 @@ class PersonalData(models.Model):
 	permanent_address = models.ForeignKey(PermanentAddress, default=None)
 	current_address = models.ForeignKey(CurrentAddress, default=None)
 	spouse = models.ForeignKey(Spouse, default=None)
-	flags = models.ManyToManyField(FlagDocuments)
+	flags = models.ManyToManyField(FlagDocuments, blank=True)
 	training_certificates = models.ManyToManyField(TrainingCertificates)
 
 	def __str__(self):
@@ -311,3 +313,8 @@ class SeaService(models.Model):
 
 	def __str__(self):
 		return self.vessel_name
+
+	def save(self, *args, **kwargs):
+		if self.vessel_name == '':
+			return False
+		super(SeaService, self).save(*args, **kwargs)

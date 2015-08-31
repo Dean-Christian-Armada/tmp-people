@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
 	# url(r'^$', views.form, name='application_form' ),
-	url(r'^tmp$', views.tmp_form, name='application_form' ),
+	url(r'^tmp/$', views.tmp_form, name='application_form' ),
 	url(r'^tmp-image/$', views.tmp_image, name='tmp_image'),
 	url(r'^success/$', views.success, name='success'),
 	# url(r'^pdf-report/$', views.pdf_report, name='pdf_report'),

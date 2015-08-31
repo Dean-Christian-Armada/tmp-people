@@ -41,8 +41,10 @@ def tmp_form(request):
 	usvisa_form = USVisaForm()
 	schengenvisa_form = SchengenVisaForm()
 	yellowfever_form = YellowFeverForm()
-	seaservice_form = formset_factory(SeaServiceForm, extra=10)
-	app_form = AppForm()
+	seaservice_form = formset_factory(SeaServiceForm, extra=9)
+	app_form = AppForms()
+
+	application_picture = ''
 
 
 	if request.method == 'POST':
@@ -78,7 +80,7 @@ def tmp_form(request):
 		yellowfever_form = YellowFeverForm(request.POST)
 
 		seaservice_form = seaservice_form(request.POST)
-		app_form = AppForm(request.POST)
+		app_form = AppForms(request.POST)
 
 
 		if appdetails_form.is_valid() and appsource_form.is_valid() and personaldata_form.is_valid() and permanentaddress_form.is_valid() and currentaddress_form.is_valid() and spouse_form.is_valid() and college_form.is_valid() and highschool_form.is_valid() and emergencycontact_form.is_valid() and backgroundinfo_form.is_valid() and passport_form.is_valid() and sbook_form.is_valid() and coc_form.is_valid() and license_form.is_valid() and src_form.is_valid() and goc_form.is_valid() and usvisa_form.is_valid() and schengenvisa_form.is_valid() and yellowfever_form.is_valid() and seaservice_form.is_valid() and app_form.is_valid():
@@ -89,12 +91,15 @@ def tmp_form(request):
 			file_name = "".join(file_name.split())
 			signature = app_form.cleaned_data.get('signatures')
 
-			tmp_application_picture = request.POST['application_picture']
-			tmp_application_picture = tmp_application_picture.replace(scheme+"://"+http_host+"/", "")
-			print tmp_application_picture
-			application_picture = "media/photos/"+file_name+".jpg"
-			os.rename(tmp_application_picture, application_picture)
-			application_picture = application_picture.replace("media/", "")
+			try:
+				tmp_application_picture = request.POST['application_picture']
+				tmp_application_picture = tmp_application_picture.replace(scheme+"://"+http_host+"/", "")
+				print tmp_application_picture
+				application_picture = "media/photos/"+file_name+".jpg"
+				os.rename(tmp_application_picture, application_picture)
+				application_picture = application_picture.replace("media/", "")
+			except:
+				pass
 			appdetails = appdetails_form.save(commit=False)
 			appsource = appsource_form.save(commit=False)
 			appsource.specific = request.POST['specific']
@@ -111,6 +116,8 @@ def tmp_form(request):
 			personaldata.current_address = currentaddress
 			personaldata.spouse = spouse
 			personaldata.save()
+			# saves many to many fields
+			personaldata_form.save_m2m()
 
 			college_form = college_form.save()
 			highschool_form = highschool_form.save()
@@ -153,12 +160,11 @@ def tmp_form(request):
 			app_form.certificates_documents = certificates_documents
 			app_form.save()
 
-			return HttpResponseRedirect('/application-form/success/?id='+app_form)
+			print app_form
+			print type(app_form)
+
+			return HttpResponseRedirect('/application-form/success/?id='+str(app_form))
 			
-			
-
-
-
 		else:
 			print appdetails_form.errors
 			print appsource_form.errors
@@ -243,26 +249,6 @@ def tmp_image(request):
 	else:
 		return HttpResponse("No data")
 
-
-
-# @login_required
-# def pdf_report(request, template):
-# 	if template:
-# 		if template == 'sea-service':
-# 			template = "application_form/pdf-report-sea-service.html"
-# 	# returns hypertext protocol: http or https
-# 		else:
-# 			template = "application_form/pdf-report.html"
-
-# 		domain = request.scheme
-# 		domain += "://"
-# 		# returns domain name
-# 		domain += request.META["HTTP_HOST"]
-# 		context_dict = {"domain":domain}
-# 		return render_to_pdf_response(request, template, context_dict)
-# 	else:
-# 		raise Http404("System Error.")
-
 @login_required
 def pdf_report_sea_services(request, id):
 	if id:
@@ -285,7 +271,7 @@ def pdf_report(request, id):
 		backgroundinfo = appform.background_information
 		certificatesdocuments = appform.certificates_documents
 			
-		cayman_islands = personaldata.flags.filter(flags='Caymen Islands')
+		cayman_islands = personaldata.flags.filter(flags='Cayman Islands')
 		marshall_islands = personaldata.flags.filter(flags='Marshall Islands')
 		liberia = personaldata.flags.filter(flags='Liberia')
 		cyprus = personaldata.flags.filter(flags='Cyprus')
@@ -342,10 +328,6 @@ def pdf_report(request, id):
 		ship_handling = personaldata.training_certificates.filter(trainings_certificates='Ship Handling')
 		maritime_eng = personaldata.training_certificates.filter(trainings_certificates='Maritime Eng.')
 
-
-
-
-
 		domain = request.scheme
 		domain += "://"
 		# returns domain name
@@ -356,8 +338,6 @@ def pdf_report(request, id):
 		check = domain+"/static/img/check.jpg"
 		uncheck = domain+"/static/img/uncheck.jpg"
 		logo = domain+"/static/img/small_logo.png"
-
-
 
 		template = "application_form/pdf-report.html"
 		context_dict = { "appform":appform, "appdetails":appdetails, "personaldata":personaldata, "education":education, "emergency":emergency, "backgroundinfo":backgroundinfo, "certificatesdocuments":certificatesdocuments, "domain":domain, "picture":picture , "signature":signature, "check":check, "uncheck":uncheck, "logo":logo, "appsource":appsource, "cayman_islands": cayman_islands, "marshall_islands": marshall_islands, "liberia":liberia, "cyprus":cyprus, "singapore":singapore, "greek":greek, "cop_bt":cop_bt, "cop_btoc":cop_btoc, "cop_atot":cop_atot, "cop_atct":cop_atct, "cop_pfrb":cop_pfrb, "cop_aff":cop_aff, "cop_mefa":cop_mefa, "cop_meca":cop_meca, "cop_sso":cop_sso, "cop_pscrb":cop_pscrb, "cop_ssa_sdsd":cop_ssa_sdsd, "bt":bt, "pscrb":pscrb, "aff":aff, "mefa":mefa, "meca":meca, "pfrb":pfrb, "ssbt":ssbt, "brm":brm, "btm":btm, "btoc":btoc, "sbff":sbff, "atot":atot, "atct":atct, "inmarsat":inmarsat, "gmdss":gmdss, "padams":padams, "hazmat":hazmat, "cow_igs":cow_igs, "ers_erm":ers_erm, "srroc":srroc, "framo":framo, "sos":sos, "soc":soc, "bwk_ewk":bwk_ewk, "rsc":rsc, "ism":ism, "ssmep":ssmep, "acni":acni, "ssa_sdsd":ssa_sdsd, "arpa_ropa":arpa_ropa, "ecdis_generic":ecdis_generic, "mlc_deck":mlc_deck, "marpol":marpol, "mlc_engine":mlc_engine, "ecdis_specific":ecdis_specific, "ship_vetting":ship_vetting, "ship_handling":ship_handling, "maritime_eng":maritime_eng}

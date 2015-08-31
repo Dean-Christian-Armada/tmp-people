@@ -10,6 +10,7 @@ $(function(){
         ((''+day).length<2 ? '0' : '') + day + '/' + d.getFullYear(); 
     var x = ''; 
     count = 0;
+    var seaservice_count = 0;
 
     // full name in the bottom most of the code
     var full_name = function(){
@@ -35,17 +36,17 @@ $(function(){
     // same affress function
     var address = function(){
         permanent_street = $("#permanent_street").val();
-        permanent_town = $("#permanent_town").val();
+        // permanent_town = $("#permanent_town").val();
         permanent_baranggay = $("#permanent_baranggay").val();
         permanent_municipality = $("#permanent_municipality").val();
         permanent_zip = $("#permanent_zip").val();
         current_street = $("#current_street").val();
-        current_town = $("#current_town").val();
+        // current_town = $("#current_town").val();
         current_baranggay = $("#current_baranggay").val();
         current_municipality = $("#current_municipality").val();
         current_zip = $("#current_zip").val();
         if(permanent_street == current_street && 
-            permanent_town == current_town && 
+            // permanent_town == current_town && 
             permanent_baranggay == current_baranggay &&
             permanent_municipality == current_municipality && 
             permanent_zip == current_zip){
@@ -186,25 +187,25 @@ $(function(){
     $("#same_address").change(function(){
       if($(this).is(':checked')){
         street = $("#permanent_street").val();
-        town = $("#permanent_town").val();
+        // town = $("#permanent_town").val();
         baranggay = $("#permanent_baranggay").val();
         municipality = $("#permanent_municipality").val();
         zip = $("#permanent_zip").val();
         if(municipality != 'Municipality'){
           $("#current_municipality").css("color", "#000");
         }
-        if(town != 'Town'){
-          $("#current_town").css("color", "#000");
-        }
+        // if(town != 'Town'){
+        //   $("#current_town").css("color", "#000");
+        // }
       }else{
         street = "";
-        town = "Town";
+        // town = "Town";
         baranggay = "";
         municipality = "Municipality";
         zip = "";
       }
       $("#current_street").val(street);
-      $("#current_town").val(town);
+      // $("#current_town").val(town);
       $("#current_baranggay").val(baranggay);
       $("#current_municipality").val(municipality);
       $("#current_zip").val(zip);
@@ -213,20 +214,37 @@ $(function(){
       val = $(this).val();
       if(val == 'S'){
         $("#id_married_date").val("");
+        $("#id_spouse_name").val("");
+        $("#id_birthdate").val("");
+        $("#id_spouse_contact").val("");
         $("#id_married_date").prop("disabled", true);
+        $("#id_spouse_name").prop("disabled", true);
+        $("#id_birthdate").prop("disabled", true);
+        $("#id_spouse_contact").prop("disabled", true);
       }else{
         $("#id_married_date").prop("disabled", false);
+        $("#id_spouse_name").prop("disabled", false);
+        $("#id_birthdate").prop("disabled", false);
+        $("#id_spouse_contact").prop("disabled", false);
       }
     });
 
-
+    $('table.sea-services').find('tr').each(function(){
+      seaservice_count++;
+    });
+    add_seaservice = '<tr><td><button type="button" class="btn btn-danger delete-row">Delete</button></td><td><button type="button" class="btn btn-info add-row">Add</button></td><td><button type="button" class="btn btn-warning clear-row">Clear Row</button></td><td><input Placeholder="Vessel Name" data-toggle="tooltip" id="id_form-'+seaservice_count+'-vessel_name" maxlength="50" name="form-'+seaservice_count+'-vessel_name" type="text" /></td><td><input Placeholder="Vessel Type" class="vtype" data-toggle="tooltip" id="id_form-'+seaservice_count+'-vessel_type" maxlength="50" name="form-'+seaservice_count+'-vessel_type" type="text" /></td><td><input Placeholder="Flag" class="flag" data-toggle="tooltip" id="id_form-'+seaservice_count+'-flag" maxlength="50" name="form-'+seaservice_count+'-flag" type="text" /></td><td><input Placeholder="GRT" class="grt" data-toggle="tooltip" id="id_form-'+seaservice_count+'-grt" min="0" name="form-'+seaservice_count+'-grt" type="number" /></td><td><input Placeholder="DWT" class="dwt" data-toggle="tooltip" id="id_form-'+seaservice_count+'-dwt" min="0" name="form-'+seaservice_count+'-dwt" type="number" /></td><td><input Placeholder="Year Built" data-toggle="tooltip" id="id_form-'+seaservice_count+'-year_built" min="0" name="form-'+seaservice_count+'-year_built" type="number" /></td><td><input Placeholder="Engine Type" data-toggle="tooltip" id="id_form-'+seaservice_count+'-engine_type" maxlength="50" name="form-'+seaservice_count+'-engine_type" type="text" /></td><td><input Placeholder="HP" class="hp" data-toggle="tooltip" id="id_form-'+seaservice_count+'-hp" min="0" name="form-'+seaservice_count+'-hp" type="number" /></td><td><input Placeholder="KW" class="kw" data-toggle="tooltip" id="id_form-'+seaservice_count+'-kw" min="0" name="form-'+seaservice_count+'-kw" type="number" /></td><td><input Placeholder="Manning Agency" class="td-150 manning_agency" data-toggle="tooltip" id="id_form-'+seaservice_count+'-manning_agency" maxlength="50" name="form-'+seaservice_count+'-manning_agency"type="text" /></td><td><input Placeholder="Principal / Shipowner" class="td-170" data-toggle="tooltip" id="id_form-'+seaservice_count+'-principal" maxlength="50" name="form-'+seaservice_count+'-principal" type="text" /></td><td><input Placeholder="Date Joined" class="date date-joined" data-toggle="tooltip" id="id_form-'+seaservice_count+'-date_joined" name="form-'+seaservice_count+'-date_joined" type="text" /></td><td><input Placeholder="Date Left" class="date date-left" data-toggle="tooltip" disabled="" id="id_form-'+seaservice_count+'-date_left" name="form-'+seaservice_count+'-date_left" type="text" /></td><td style="display:none"><input Placeholder="Days" class="duration" data-toggle="tooltip" id="id_form-'+seaservice_count+'-duration" min="0" name="form-'+seaservice_count+'-duration" readonly="" type="number"/></td><td><input Placeholder="Rank" class="rank" data-toggle="tooltip" id="id_form-'+seaservice_count+'-rank" maxlength="50" name="form-'+seaservice_count+'-rank" type="text" /></td><td><select class="first-choice cause_of_discharge" data-toggle="tooltip" id="id_form-'+seaservice_count+'-cause_of_discharge" name="form-'+seaservice_count+'-cause_of_discharge"><option value="Cause of Discharge">Cause of Discharge</option><option value="Finished Contract">Finished Contract</option><option value="Compassionate Reason">Compassionate Reason</option><option value="Medical Repatriation">Medical Repatriation</option><option value="Promoted on Board">Promoted on Board</option><option value="Vessel Sold">Vessel Sold</option><option value="Vessel Scraped">Vessel Scraped</option><option value="Change Management">Change Management</option><option value="Own Request">Own Request</option></select></td></tr>';
     $("tbody").on("click", ".add-row", function(){
-      html = $(".first-row").html();
-      $(this).parent().parent().after("<tr>"+html+"</tr>");
+      $(this).parent().parent().after(add_seaservice);
+      seaservice_count++;
+      val = $("#id_form-TOTAL_FORMS").val(seaservice_count);
     });
     $("tbody").on("click", ".delete-row", function(){
       $(this).parent().parent().remove();
+      seaservice_count--;
+      val = $("#id_form-TOTAL_FORMS").val(seaservice_count);
     });
+
+
     $("body").on("focus", ".date", function(){
       $(this).datepicker({ 
         changeYear: true, 
@@ -244,6 +262,19 @@ $(function(){
           var event = arguments.callee.caller.caller.arguments[0];
           if ($(event.delegateTarget).hasClass('ui-datepicker-close')) {
             $(this).val('');
+          }
+          if($(this).hasClass('birth_date')){
+            val = $(this).val();
+            // alert('val');
+            if(val != ''){
+              var birthday = new Date(val);
+              var today = new Date();
+              var age = ((today - birthday) / (31557600000));
+              var age = Math.floor( age );
+            }else{
+              var age = ''
+            }
+            $(".age").val(age);
           }
           if($(this).hasClass('date-joined') || $(this).hasClass('date-left')){
             val = $(this).val();
@@ -321,12 +352,15 @@ $(function(){
     $('[data-toggle="tooltip"]').tooltip({ html: true });
     $("input").keyup(tooltip).click(tooltip).focusout(tooltip);
     $("#last_name, #first_name, #middle_name").keyup(full_name).click(full_name).focusout(full_name);
-    $("#permanent_street, #permanent_town, #permanent_baranggay, #permanent_municipality, #permanent_zip, #current_street, #current_town, #current_baranggay, #current_municipality, #current_zip").keyup(address).change(address);
+    $("#permanent_street, #permanent_baranggay, #permanent_municipality, #permanent_zip, #current_street, #current_baranggay, #current_municipality, #current_zip").keyup(address).change(address);
     $(".essay").keyup(essay).click(essay).focusout(essay);
-    $(".sea-services input").keyup(function(){
+    $(".sea-services").on("keyup", "input", function(){
       $(this).parent().siblings().children().prop("required", "true");
-      $(this).parent().siblings("td:nth-child(2)").html("<button type='button' class='btn btn-warning clear-row'>Clear Row</button>");
     });
+    // $(".sea-services input").keyup(function(){
+    //   $(this).parent().siblings().children().prop("required", "true");
+      // $(this).parent().siblings("td:nth-child(2)").html("<button type='button' class='btn btn-warning clear-row'>Clear Row</button>");
+    // });
 
     // Start Sea Service Validation
     $("#proceed-sea-service").click(function(){
@@ -337,12 +371,12 @@ $(function(){
           $(this).after("<ul class='errorlist'><li>This field is required.</li></ul>");
         }else if($(this).val().length >= 1 && $(this).next('ul').length == 1){
           // count--;
-          x = $(this)
+          x = $(this);
           x.next('ul').remove();
           hp_kw_grt_dwt_validator(x);
         }
         else if($(this).val().length >= 1 && $(this).next('ul').length == 0){
-          x = $(this)
+          x = $(this);
           hp_kw_grt_dwt_validator(x);
         }else if(!$(this).prop('required')){
           // alert('dean');
@@ -350,7 +384,6 @@ $(function(){
           $(this).next('ul').remove();
         }
       });
-      // $("")
       $('.sea-services').find('select').each(function(){
         if($(this).prop('required') && $(this).next('ul').length != 1 && $(this).val() == "Cause of Discharge"){
           // count++;
@@ -378,7 +411,7 @@ $(function(){
 
     $(".essay").trigger('click');
     $("#id_civil_status").trigger("change");
-    // $("input").trigger("keyup");
+    $("#application-form input").trigger("keyup");
     $("body").on("change", "select", function(){
       val = $(this).val();
       $(this).css("color", "#000");
@@ -451,22 +484,10 @@ $(function(){
       $(".jSignature").resize();
     });
 
-    // Auto Age
-    $(".birth_date").change(function(){
-      val = $(this).val();
-      var birthday = new Date(val);
-      var today = new Date();
-      var age = ((today - birthday) / (31557600000));
-      var age = Math.floor( age );
-      $(".age").val(age);
-    });
     $(".search-zip").click(function(){
       params = $(this).attr('data-params');
       baranggay = $("#"+params+"_baranggay").val();
-      zip = $("#"+params+"_zip").val();
       municipality = $("#"+params+"_municipality").val();
-      town = $("#"+params+"_town").val();
-      street = $("#"+params+"_street").val();
       address = baranggay+"+"+municipality+"+"+"zip code";
       address = address.replace(/ /g,"+");
       var myWindow = window.open("http://www.google.com.ph/#q="+address, "", "width=1000, height=700");
@@ -480,6 +501,9 @@ $(function(){
     }
     if($("#id_civil_status").val() != "Civil Status"){
       $("#id_civil_status").css("color", "#000");
+    }
+    if($(".cause_of_discharge").val() != "Cause of Discharge"){
+      $(".cause_of_discharge").css("color", "#000");
     }
 
     // Start Input Validations
