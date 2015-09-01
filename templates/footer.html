@@ -17,6 +17,10 @@
             {% if not appsource_form.errors %}
                 specific = '{{ request.POST.specific }}'
             {% endif %}
+            $('#signature').on('show.bs.modal', function (e){
+                // alert('dean');
+              setTimeout(function(){ $(".jsign-wrapper input[value='Reset']").click(); }, 1000);
+            });
         {% endif %}
 	</script>
     <script type="text/javascript" src="{% static 'js/main.js' %}"></script>

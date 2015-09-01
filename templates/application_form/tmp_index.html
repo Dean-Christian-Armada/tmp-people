@@ -664,8 +664,8 @@
                   <td><input Placeholder="DWT" class="dwt" data-toggle="tooltip" id="id_form-9-dwt" min="0" name="form-9-dwt" type="number" /></td>
                   <td><input Placeholder="Year Built" data-toggle="tooltip" id="id_form-9-year_built" min="0" name="form-9-year_built" type="number" /></td>
                   <td><input Placeholder="Engine Type" data-toggle="tooltip" id="id_form-9-engine_type" maxlength="50" name="form-9-engine_type" type="text" /></td>
-                  <td><input Placeholder="HP" class="hp" data-toggle="tooltip" id="id_form-9-hp" min="0" name="form-9-hp" type="number" /></td>
-                  <td><input Placeholder="KW" class="kw" data-toggle="tooltip" id="id_form-9-kw" min="0" name="form-9-kw" type="number" /></td>
+                  <td><input Placeholder="HP" class="hp" data-toggle="tooltip" id="id_form-9-hp" step="0.1" name="form-9-hp" type="number" /></td>
+                  <td><input Placeholder="KW" class="kw" data-toggle="tooltip" id="id_form-9-kw" step="0.1" name="form-9-kw" type="number" /></td>
                   <td><input Placeholder="Manning Agency" class="td-150 manning_agency" data-toggle="tooltip" id="id_form-9-manning_agency" maxlength="50" name="form-9-manning_agency" type="text" /></td>
                   <td><input Placeholder="Principal / Shipowner" class="td-170" data-toggle="tooltip" id="id_form-9-principal" maxlength="50" name="form-9-principal" type="text" /></td>
                   <td><input Placeholder="Date Joined" class="date date-joined" data-toggle="tooltip" id="id_form-9-date_joined" name="form-9-date_joined" type="text" /></td>
@@ -692,7 +692,7 @@
       </div>
       <div class="modal-body" style="text-align: center">
         {{ app_form.signatures }}
-        <button type="button" class="btn btn-info form-control half-width" data-dismiss="modal" style="margin-top: 15px; margin-bottom: 15px;">Proceed to Application</button>
+        <button class="btn btn-info form-control half-width" style="margin-top: 15px; margin-bottom: 15px;">Submit Application</button>
       </div>
     </div>
   </div>

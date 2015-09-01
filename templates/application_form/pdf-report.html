@@ -190,7 +190,7 @@
 			</td>
 		</tr>
 	</table>
-	<br />
+	<br /><br /><br /><br /><br /><br /><br /><br />
 	<table border="1">
 		<tr>
 			<th width="100%" style="text-align: left; ">EDUCATIONAL INFORMATION</th>
@@ -250,8 +250,6 @@
 		<tr>
 			<td>
 				Have you ever been denied an application for any visa or entry into another country?
-				<br /><b><i>Explanation:</i></b> <br />
-				<u>This is just a sample explanation by Dean Armada</u>
 			</td>
 			<td align="center" style="padding-top:0px;">{% if backgroundinfo.visa_application %}<img src="{{ ressource.image.url|get64:check }}">{%else%}<img src="{{ ressource.image.url|get64:uncheck }}">{% endif %}</td>
 			<td align="center" style="padding-top:0px;">{% if backgroundinfo.visa_application %}<img src="{{ ressource.image.url|get64:uncheck }}">{%else%}<img src="{{ ressource.image.url|get64:check }}">{% endif %}</td>
@@ -384,7 +382,7 @@
 			</td>
 		</tr>
 	</table>
-	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 	<table border="1">
 		<tr>
 			<th style="text-align: left">TRAINING AND OTHER CERTIFICATES</th>
@@ -504,7 +502,7 @@
 	<br />
 	<table border="1">
 		<tr>
-			<th align="left">ESSAY <i>(52 words)</i></th>
+			<th align="left">ESSAY <i>({{ count_words }}) words</i></th>
 		</tr>
 		<tr>
 			<td>{{ appform.essay }}</td>

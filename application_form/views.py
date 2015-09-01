@@ -252,10 +252,15 @@ def tmp_image(request):
 @login_required
 def pdf_report_sea_services(request, id):
 	if id:
-		sea_service = SeaService.objects.filter(personal_data=id)
+		print id
+		appform = AppForm.objects.get(id=id)
+		personaldata = appform.personal_data
+		sea_service = SeaService.objects.filter(personal_data=personaldata)
+		sea_service_count = len(sea_service)
 		template = "application_form/pdf-report-sea-service.html"
 		context_dict = {}
 		context_dict['sea_service'] = sea_service
+		context_dict['sea_service_count'] = sea_service_count
 		return render_to_pdf_response(request, template, context_dict)
 
 
@@ -339,8 +344,12 @@ def pdf_report(request, id):
 		uncheck = domain+"/static/img/uncheck.jpg"
 		logo = domain+"/static/img/small_logo.png"
 
+		# count essay words
+		count_words = ''.join(c if c.isalnum() else ' ' for c in appform.essay).split()
+		count_words = len(count_words)
+
 		template = "application_form/pdf-report.html"
-		context_dict = { "appform":appform, "appdetails":appdetails, "personaldata":personaldata, "education":education, "emergency":emergency, "backgroundinfo":backgroundinfo, "certificatesdocuments":certificatesdocuments, "domain":domain, "picture":picture , "signature":signature, "check":check, "uncheck":uncheck, "logo":logo, "appsource":appsource, "cayman_islands": cayman_islands, "marshall_islands": marshall_islands, "liberia":liberia, "cyprus":cyprus, "singapore":singapore, "greek":greek, "cop_bt":cop_bt, "cop_btoc":cop_btoc, "cop_atot":cop_atot, "cop_atct":cop_atct, "cop_pfrb":cop_pfrb, "cop_aff":cop_aff, "cop_mefa":cop_mefa, "cop_meca":cop_meca, "cop_sso":cop_sso, "cop_pscrb":cop_pscrb, "cop_ssa_sdsd":cop_ssa_sdsd, "bt":bt, "pscrb":pscrb, "aff":aff, "mefa":mefa, "meca":meca, "pfrb":pfrb, "ssbt":ssbt, "brm":brm, "btm":btm, "btoc":btoc, "sbff":sbff, "atot":atot, "atct":atct, "inmarsat":inmarsat, "gmdss":gmdss, "padams":padams, "hazmat":hazmat, "cow_igs":cow_igs, "ers_erm":ers_erm, "srroc":srroc, "framo":framo, "sos":sos, "soc":soc, "bwk_ewk":bwk_ewk, "rsc":rsc, "ism":ism, "ssmep":ssmep, "acni":acni, "ssa_sdsd":ssa_sdsd, "arpa_ropa":arpa_ropa, "ecdis_generic":ecdis_generic, "mlc_deck":mlc_deck, "marpol":marpol, "mlc_engine":mlc_engine, "ecdis_specific":ecdis_specific, "ship_vetting":ship_vetting, "ship_handling":ship_handling, "maritime_eng":maritime_eng}
+		context_dict = { "appform":appform, "appdetails":appdetails, "personaldata":personaldata, "education":education, "emergency":emergency, "backgroundinfo":backgroundinfo, "certificatesdocuments":certificatesdocuments, "domain":domain, "picture":picture , "signature":signature, "check":check, "uncheck":uncheck, "logo":logo, "appsource":appsource, "cayman_islands": cayman_islands, "marshall_islands": marshall_islands, "liberia":liberia, "cyprus":cyprus, "singapore":singapore, "greek":greek, "cop_bt":cop_bt, "cop_btoc":cop_btoc, "cop_atot":cop_atot, "cop_atct":cop_atct, "cop_pfrb":cop_pfrb, "cop_aff":cop_aff, "cop_mefa":cop_mefa, "cop_meca":cop_meca, "cop_sso":cop_sso, "cop_pscrb":cop_pscrb, "cop_ssa_sdsd":cop_ssa_sdsd, "bt":bt, "pscrb":pscrb, "aff":aff, "mefa":mefa, "meca":meca, "pfrb":pfrb, "ssbt":ssbt, "brm":brm, "btm":btm, "btoc":btoc, "sbff":sbff, "atot":atot, "atct":atct, "inmarsat":inmarsat, "gmdss":gmdss, "padams":padams, "hazmat":hazmat, "cow_igs":cow_igs, "ers_erm":ers_erm, "srroc":srroc, "framo":framo, "sos":sos, "soc":soc, "bwk_ewk":bwk_ewk, "rsc":rsc, "ism":ism, "ssmep":ssmep, "acni":acni, "ssa_sdsd":ssa_sdsd, "arpa_ropa":arpa_ropa, "ecdis_generic":ecdis_generic, "mlc_deck":mlc_deck, "marpol":marpol, "mlc_engine":mlc_engine, "ecdis_specific":ecdis_specific, "ship_vetting":ship_vetting, "ship_handling":ship_handling, "maritime_eng":maritime_eng, "count_words":count_words}
 		return render_to_pdf_response(request, template, context_dict)
 	else:
 		raise Http404("System Error.")

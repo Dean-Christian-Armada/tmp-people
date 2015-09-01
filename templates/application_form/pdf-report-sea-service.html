@@ -13,7 +13,7 @@
 <body>
 	<table border="1">
 		<tr>
-			<th style="text-align: left; " colspan="16">SEA SERVICE (8 Vessels)</th>
+			<th style="text-align: left; " colspan="16">SEA SERVICE ({{ sea_service_count }} Vessel{% if sea_service_count > 1 %}s{% endif %})</th>
 		</tr>
 		<tr>
 			<th>Vessel Name</th>
@@ -29,7 +29,7 @@
 			<th>Princiapl / Shipowner</th>
 			<th>Date Joined</th>
 			<th>Date Left</th>
-			<th>Month/Days</th>
+			<th>Days</th>
 			<th>Rank</th>
 			<th>Cause of Discharge</th>
 		</tr>
