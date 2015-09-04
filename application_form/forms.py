@@ -26,8 +26,8 @@ class AppDetailsForm(forms.ModelForm):
             ('Chief Mate', 'Chief Mate'),
             ('Chief Engineer', 'Chief Engineer'),
             ('2nd Engineer', '2nd Engineer'),
-            ('Deck Engine', 'Deck Engine'),
-            ('Cadet Engine', 'Cadet Engine'),
+            ('Deck Cadet ', 'Deck Cadet '),
+            ('Engine Cadet ', 'Engine Cadet '),
 		)
 	ALTERNATIVE_CHOICES = (
 			('Alternative Position', 'Alternative Position'),
@@ -35,8 +35,8 @@ class AppDetailsForm(forms.ModelForm):
             ('Chief Mate', 'Chief Mate'),
             ('Chief Engineer', 'Chief Engineer'),
             ('2nd Engineer', '2nd Engineer'),
-            ('Deck Engine', 'Deck Engine'),
-            ('Cadet Engine', 'Cadet Engine'),
+            ('Deck Cadet ', 'Deck Cadet '),
+            ('Engine Cadet ', 'Engine Cadet '),
 		)
 	position_applied = forms.ChoiceField(choices=POSITION_CHOICES, error_messages={'invalid_choice': 'Please select a valid choice'})
 	alternative_position = forms.ChoiceField(choices=ALTERNATIVE_CHOICES, error_messages={'invalid_choice': 'Please select a valid choice'})

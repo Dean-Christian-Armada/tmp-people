@@ -33,7 +33,7 @@ $(function(){
                     }
                   };
 
-    // same affress function
+    // same address function
     var address = function(){
         permanent_street = $("#permanent_street").val();
         // permanent_town = $("#permanent_town").val();
@@ -187,21 +187,13 @@ $(function(){
     $("#same_address").change(function(){
       if($(this).is(':checked')){
         street = $("#permanent_street").val();
-        // town = $("#permanent_town").val();
         baranggay = $("#permanent_baranggay").val();
         municipality = $("#permanent_municipality").val();
         zip = $("#permanent_zip").val();
-        if(municipality != 'Municipality'){
-          $("#current_municipality").css("color", "#000");
-        }
-        // if(town != 'Town'){
-        //   $("#current_town").css("color", "#000");
-        // }
       }else{
         street = "";
-        // town = "Town";
         baranggay = "";
-        municipality = "Municipality";
+        municipality = "";
         zip = "";
       }
       $("#current_street").val(street);
@@ -368,7 +360,7 @@ $(function(){
     $("#permanent_street, #permanent_baranggay, #permanent_municipality, #permanent_zip, #current_street, #current_baranggay, #current_municipality, #current_zip").keyup(address).change(address);
     $(".essay").keyup(essay).click(essay).focusout(essay);
     $(".sea-services").on("keyup", "input", function(){
-      // $(this).parent().siblings().children().prop("required", "true");
+      $(this).parent().siblings().children().prop("required", "true");
     });
 
     // $(".sea-services input").keyup(function(){
